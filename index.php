@@ -17,9 +17,12 @@
         </p>
         <hr class="mb-5">
       </section>
+
     </main>
   </div>
+  
 
   <?php include 'components/footer.php'; ?>
 </div>
+
 <?php include 'components/closing.php'; ?>

@@ -18,8 +18,8 @@
       </button>
       <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
         <ul class="navbar-nav text-uppercase">
-          <li class="nav-item active"><a class="nav-link tm-nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link tm-nav-link" href="about.php">Explore</a></li>
+          <li class="nav-item active"><a class="nav-link tm-nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link tm-nav-link" href="explore.php">Explore</a></li>
           <li class="nav-item"><a class="nav-link tm-nav-link" href="login.php">Login</a></li>
           <li class="nav-item"><a class="nav-link tm-nav-link" href="signup.php">Signup</a></li>
         </ul>
