@@ -8,9 +8,9 @@
     <main class="tm-col-right">
       <section class="tm-content">
         <hr class="mb-3">
-        <h2 class="mb-5 tm-content-title">Fill Your Soul With Kerala....</h2>
+        <h2 class="mb-5">Fill Your Soul With Kerala....</h2>
         <p class="mb-5">
-          Kerala, located on the south-western tip of India, enjoys unique geographical features 
+         <a href="home.php"> Kerala </a>, located on the south-western tip of India, enjoys unique geographical features 
           that have made it one of the most sought-after tourist destinations in Asia. 
           Fondly referred to as ‘God’s Own Country’, Kerala was selected by the National Geographic 
           Traveller as one of the 50 destinations of a lifetime and one of the thirteen paradises in the world.
