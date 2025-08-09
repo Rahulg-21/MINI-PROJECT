@@ -32,15 +32,15 @@
     <section id="home_two_banner">
         <div class="home_two_banner_slider_wrapper owl-carousel owl-theme">
             <div class="banner_two_slider_item fadeInUp" data-wow-duration="2s"
-                style="background-image: url(./assets/img/banner/pic-1.jpg);">
+                style="background-image: url(./assets/img/banner/bg5.jpg);">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="banner_two_text">
-                                <h3 class="title">BEST TRAVEL AGENCY</h3>
+                                <h3 class="title">Kerala Toursim</h3>
                                 <h1 class="slider-sttle">EXPLORE</h1>
-                                <h2 class="slider-pararp">The world with us!</h2>
-                                <h4 class="slider-pararp">Find awesome flights, hotel, tour, car and packages</h4>
+                                <h2 class="slider-pararp">With Us!</h2>
+                                <h4 class="slider-pararp">Find best tourist destinations</h4>
                                 <div class="home_two_button btn-animation">
                                     <a href="top-destinations.php" class="btn btn_theme_white btn_md">Discover</a>
                                     <a href="about.php" class="btn btn_theme_transparent btn_md">Know
@@ -52,15 +52,15 @@
                 </div>
             </div>
             <div class="banner_two_slider_item fadeInUp" data-wow-duration="2s"
-                style="background-image: url(./assets/img/banner/pic-2.jpg);">
+                style="background-image: url(./assets/img/banner/bg2.jpg);">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="banner_two_text">
-                                <h3 class="title">BEST TRAVEL AGENCY</h3>
+                                <h3 class="title">Kerala Toursim</h3>
                                 <h1 class="slider-sttle">EXPLORE</h1>
-                                <h2 class="slider-pararp">The world with us!</h2>
-                                <h4 class="slider-pararp">Find awesome flights, hotel, tour, car and packages</h4>
+                                <h2 class="slider-pararp">With Us!</h2>
+                                <h4 class="slider-pararp">Find best tourist destinations</h4>
                                 <div class="home_two_button btn-animation">
                                     <a href="top-destinations.php" class="btn btn_theme_white btn_md">Discover</a>
                                     <a href="about.php" class="btn btn_theme_transparent btn_md">Know
@@ -71,16 +71,16 @@
                     </div>
                 </div>
             </div>
-            <div class="banner_two_slider_item fadeInUp" data-wow-duration="2s"
-                style="background-image: url(./assets/img/banner/pic-3.jpg);">
+               <div class="banner_two_slider_item fadeInUp" data-wow-duration="2s"
+                style="background-image: url(./assets/img/banner/bg4.jpg);">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="banner_two_text">
-                                <h3 class="title">BEST TRAVEL AGENCY</h3>
+                                <h3 class="title">Kerala Toursim</h3>
                                 <h1 class="slider-sttle">EXPLORE</h1>
-                                <h2 class="slider-pararp">The world with us!</h2>
-                                <h4 class="slider-pararp">Find awesome flights, hotel, tour, car and packages</h4>
+                                <h2 class="slider-pararp">With Us!</h2>
+                                <h4 class="slider-pararp">Find best tourist destinations</h4>
                                 <div class="home_two_button btn-animation">
                                     <a href="top-destinations.php" class="btn btn_theme_white btn_md">Discover</a>
                                     <a href="about.php" class="btn btn_theme_transparent btn_md">Know
@@ -95,81 +95,70 @@
     </section>
 
     <!-- Top Service And Tour Area-->
-    <section id="top_service_andtour" class="section_padding_top">
-        <div class="container">
-            <!-- Section Heading -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="section_heading_center">
-                        <h2>And tour top services</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="assets/img/icon/service-1.png" alt="icon">
-                        <h3>Hotel Booking</h3>
-                        <p>Mollit magna ex sint anim. Et velit ea in incididunt amet incididunt deserunt mollit magna
-                            duis laboris eiusmod. Minim exercitation minim Lorem Id deserunt sint duis cillumaliquip.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="assets/img/icon/service-2.png" alt="icon">
-                        <h3>Flight Booking</h3>
-                        <p>
-                            Id aliquip qui dolore enim ea deserunt quis. Consectetur nostrud labore cupidatat proident
-                            voluptate voluptate laboris ad ex eiusmod proident adipisicing enim.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="assets/img/icon/service-3.png" alt="icon">
-                        <h3>Ticket Booking</h3>
-                        <p>
-                            Exercitation ullamco reprehenderit amet nulla mollit do sunt. Id consequat nostrud amet
-                            cillum do consectetur esse occaecat tempor reprehenderit ullamco sit aliqua liqua irure.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="assets/img/icon/service-4.png" alt="icon">
-                        <h3>Cruises Booking</h3>
-                        <p>
-                            Voluptate esse culpa cupidatat irure occaecat. Laborum consectetur qui laborum nostrud et.
-                            Nostrud do aliqua cillum id adipisicing anim. Id labore enim esse est
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="assets/img/icon/service-5.png" alt="icon">
-                        <h3>Rail Booking</h3>
-                        <p>
-                            Quis aliqua irure velit ipsum et et ipsum irure qui ut mollit sunt eiusmod do. Sunt elit
-                            excepteur culpa irure elit ea culpa adipisicing. Sit officia consequat
-                            excepteur
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="top_service_boxed">
-                        <img src="assets/img/icon/service-6.png" alt="icon">
-                        <h3>Amazing Tour</h3>
-                        <p>
-                            Labore anim culpa sint minim eu tempor cillum esse eiusmod. Sint
-                            exercitation nulla qui non nostrud. Reprehenderit commodo duis ullamco anim. Incididunt
-                            deserunt
-                        </p>
-                    </div>
+<!-- Top Services Area -->
+<section id="top_service_andtour" class="section_padding_top">
+    <div class="container">
+        <!-- Section Heading -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section_heading_center">
+                    <h2>Our Top Services</h2>
+                    <p>Everything you need to plan and enjoy your Kerala trip</p>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="row">
+            <!-- Hotel Booking -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="top_service_boxed">
+                    <img src="assets/img/icon/service-1.png" alt="Hotel Booking">
+                    <h3>Hotel Booking</h3>
+                    <p>Browse and book hotels across Kerala, from budget stays to premium resorts, all in one place.</p>
+                </div>
+            </div>
+            <!-- Trip Alerts -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="top_service_boxed">
+                    <img src="assets/img/icon/service-2.png" alt="Trip Alerts">
+                    <h3>Trip Updates</h3>
+                    <p>Tell us where and when you're going, and get email updates about events, weather, and travel tips for your destination.</p>
+                </div>
+            </div>
+            <!-- Hidden Locations -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="top_service_boxed">
+                    <img src="assets/img/icon/service-3.png" alt="Hidden Locations">
+                    <h3>Hidden Locations</h3>
+                    <p>Discover offbeat spots shared by other travellers or add your own secret finds to the community map.</p>
+                </div>
+            </div>
+            <!-- Local Experiences -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="top_service_boxed">
+                    <img src="assets/img/icon/service-4.png" alt="Local Experiences">
+                    <h3>Local Experiences</h3>
+                    <p>Explore authentic local food, culture, and traditions without packaged tours or fixed itineraries.</p>
+                </div>
+            </div>
+            <!-- Community Recommendations -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="top_service_boxed">
+                    <img src="assets/img/icon/service-5.png" alt="Community Recommendations">
+                    <h3>Community Recommendations</h3>
+                    <p>Get suggestions from fellow travellers who have been to the places you’re planning to visit.</p>
+                </div>
+            </div>
+            <!-- Event Highlights -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="top_service_boxed">
+                    <img src="assets/img/icon/service-6.png" alt="Event Highlights">
+                    <h3>Event Highlights</h3>
+                    <p>Stay updated on cultural festivals, fairs, and special activities happening during your trip dates.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Holiday Destinations  Area-->
     <section id="holiday_destinations" class="section_padding_top">
@@ -335,236 +324,187 @@
         </div>
     </section>
 
-    <!-- About Area -->
-    <section id="about_two_area" class="section_padding_top">
-        <div class="container">
+   <!-- About Area -->
+<section id="about_two_area" class="section_padding_top">
+    <div class="container">
+        <div class="row">
+            <!-- About Content -->
+            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                <div class="about_two_left">
+                    <div class="about_two_left_top">
+                        <h5>About Us</h5>
+                        <h2>Helping you explore Kerala like a local</h2>
+                        <p>
+                            We’re a community-driven platform dedicated to helping travellers explore Kerala’s beauty beyond the usual tourist spots. From hotel bookings to hidden gems and event updates, we make your journey smooth, memorable, and authentic.
+                        </p>
+                    </div>
+                    <div class="about_two_left_middel">
+                        <div class="about_two_item">
+                            <div class="about_two_item_icon">
+                                <img src="assets/img/icon/about-1.png" alt="Local Insights">
+                            </div>
+                            <div class="about_two_item_text">
+                                <h3>Local Insights</h3>
+                                <p>Discover secret spots, food joints, and cultural experiences shared by locals and fellow travellers.</p>
+                            </div>
+                        </div>
+                        <div class="about_two_item">
+                            <div class="about_two_item_icon">
+                                <img src="assets/img/icon/about-2.png" alt="Custom Trip Updates">
+                            </div>
+                            <div class="about_two_item_text">
+                                <h3>Custom Trip Updates</h3>
+                                <p>Get notified about festivals, events, and weather changes for the exact dates and places you’re visiting.</p>
+                            </div>
+                        </div>
+                        <div class="about_two_item">
+                            <div class="about_two_item_icon">
+                                <img src="assets/img/icon/about-3.png" alt="Hassle-Free Bookings">
+                            </div>
+                            <div class="about_two_item_text">
+                                <h3>Hassle-Free Bookings</h3>
+                                <p>Book hotels and stays directly through our platform without unnecessary tour packages or commissions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- About Image -->
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                <div class="about_two_left_img">
+                    <img src="assets/img/common/waterfall1.jpg" alt="Kerala Waterfall">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partner Area -->
+<section id="partner_area" class="section_padding_top">
+    <div class="container">
+        <div class="partner_area_bg">
             <div class="row">
-                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
-                    <div class="about_two_left">
-                        <div class="about_two_left_top">
-                            <h5>About us</h5>
-                            <h2>Discover your all the destinations with us!</h2>
-                            <p>
-                                Sint est eu sit ipsum enim amet esse sunt incididunt. Occaecat aliquip commodo ipsum
-                                officia
-                                in Lorem commodo aliquip dolore. Nisi domip excepteur commodo ea nostrud mollit.
-                            </p>
+                <div class="col-lg-6">
+                    <div class="partner_area_left">
+                        <h5>Your Travel Partner in Kerala</h5>
+                        <h2>Plan smart and enjoy Kerala’s charm stress-free</h2>
+                        <p>
+                            Whether you’re a solo backpacker or a family traveller, we connect you with local knowledge, trusted stays, and the latest updates so you can focus on enjoying every moment.
+                        </p>
+                        <div class="partner_video_area">
+                            <a class="video_btn video_play_area" href="https://www.youtube.com/watch?v=_2LLXnUdUIc"
+                                title="Kerala Travel Video"><i class="fas fa-play"></i></a>
                         </div>
-                        <div class="about_two_left_middel">
-                            <div class="about_two_item">
-                                <div class="about_two_item_icon">
-                                    <img src="assets/img/icon/about-1.png" alt="icon">
-                                </div>
-                                <div class="about_two_item_text">
-                                    <h3>Experienced tour guide</h3>
-                                    <p>Dolore ullamco voluptate duis est voluptate exercitation officia ad qui nostrud
-                                        adipisicing non.</p>
-                                </div>
+                        <div class="local_counter_area">
+                            <div class="local_counter_box">
+                                <h2>500+</h2>
+                                <h5>Verified Hotels</h5>
                             </div>
-                            <div class="about_two_item">
-                                <div class="about_two_item_icon">
-                                    <img src="assets/img/icon/about-2.png" alt="icon">
-                                </div>
-                                <div class="about_two_item_text">
-                                    <h3>Affordable tour packages</h3>
-                                    <p>Dolore ullamco voluptate duis est voluptate exercitation officia ad qui nostrud
-                                        adipisicing non.</p>
-                                </div>
+                            <div class="local_counter_box">
+                                <h2>200+</h2>
+                                <h5>Hidden Spots</h5>
                             </div>
-                            <div class="about_two_item">
-                                <div class="about_two_item_icon">
-                                    <img src="assets/img/icon/about-3.png" alt="icon">
-                                </div>
-                                <div class="about_two_item_text">
-                                    <h3>Explore top places over the world</h3>
-                                    <p>Dolore ullamco voluptate duis est voluptate exercitation officia ad qui nostrud
-                                        adipisicing non.</p>
-                                </div>
+                            <div class="local_counter_box">
+                                <h2>100%</h2>
+                                <h5>Traveller Satisfaction</h5>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
-                    <div class="about_two_left_img">
-                        <img src="assets/img/common/waterfall1.jpg" alt="img">
+                <!-- You can add a right-side image or testimonial slider here if needed -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Partner / Testimonials Area -->
+<section id="hometwo_clinet_area" class="section_padding">
+    <div class="container">
+        <div class="client_two_area_bg">
+            <div class="row align-items-center">
+                <!-- Left Content -->
+                <div class="col-lg-5">
+                    <div class="two_client_area_left">
+                        <h2>Discover Kerala's Hidden Gems  
+                            Book Your Stay & Plan Your Journey!</h2>
+                        <p>From cozy stays to personalized trip updates, we make your Kerala travel smooth and memorable. Share hidden spots and explore new ones every day.</p>
+                        <div class="sm_call_area">
+                            <img src="assets/img/icon/sm-call.png" alt="icon">
+                            <div class="sm_call_number">
+                                <h5>Call now</h5>
+                                <h2><a href="tel:+94-77-811-8118">+94 77 811 8118</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content: Testimonials -->
+                <div class="col-lg-6">
+                    <div class="home_client_wrpper">
+                        <h4>What Travellers Say</h4>
+                        <h2>Real Stories from Happy Visitors</h2>
+                        <div class="home-two-quote">
+                            <img src="assets/img/icon/quote.png" alt="quote icon">
+                            <h3>Unforgettable Kerala Experience!</h3>
+                        </div>
+                        <div class="home_two_client_slider owl-theme owl-carousel">
+                            <!-- Testimonial Item -->
+                            <div class="client_two_content">
+                                <p>
+                                    “Booked my hotel through the site and got email updates for the whole trip. Even discovered a waterfall I never knew existed!”
+                                </p>
+                                <div class="client_two_author">
+                                    <h5>Ananya Menon</h5>
+                                    <h6>Traveller</h6>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial Item -->
+                            <div class="client_two_content">
+                                <p>
+                                    “Loved being able to share a secret beach location. Now others can enjoy it too!”
+                                </p>
+                                <div class="client_two_author">
+                                    <h5>Rahul Krishnan</h5>
+                                    <h6>Photographer</h6>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial Item -->
+                            <div class="client_two_content">
+                                <p>
+                                    “The updates before my trip made everything stress-free. Definitely using this again.”
+                                </p>
+                                <div class="client_two_author">
+                                    <h5>Priya Varma</h5>
+                                    <h6>Teacher</h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Partner Area -->
-    <section id="partner_area" class="section_padding_top">
-        <div class="container">
-            <div class="partner_area_bg">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="partner_area_left">
-                            <h5>Find your best travel partner</h5>
-                            <h2>Prepare yourself and let’s enjoy
-                                the beauty of the world</h2>
-                            <p>Sint est eu sit ipsum enim amet esse sunt incididunt. Occaecat aliquip commodo ipsum
-                                officia in Lorem commodo aliquip dolore. Nisi domip excepteur commodo ea nostrud mollit.
-                            </p>
-                            <div class="partner_video_area">
-                                <a class="video_btn video_play_area" href="https://www.youtube.com/watch?v=_2LLXnUdUIc"
-                                    title="Youtube Video"><i class="fas fa-play"></i></a>
-                            </div>
-                            <div class="local_counter_area">
-                                <div class="local_counter_box">
-                                    <h2>12K</h2>
-                                    <h5>Local guides</h5>
-                                </div>
-                                <div class="local_counter_box">
-                                    <h2>750+</h2>
-                                    <h5>Destinations</h5>
-                                </div>
-                                <div class="local_counter_box">
-                                    <h2>100%</h2>
-                                    <h5>Happiness</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </section>
-
-    <!-- Choose your destinations Area-->
-<!--    <section id="choose_destinations_area" class="section_padding_top">
   
-    </section> -->
 
-    <!-- Partner Area -->
-    <section id="hometwo_clinet_area" class="section_padding">
-        <div class="container">
-            <div class="client_two_area_bg">
-                <div class="row align-items-center">
-                    <div class="col-lg-5">
-                        <div class="two_client_area_left">
-                            <h2>We Provide Top Destinations
-                                Expecially For You
-                                Book Now and Enjoy!</h2>
-                            <div class="sm_call_area">
-                                <img src="assets/img/icon/sm-call.png" alt="icon">
-                                <div class="sm_call_number">
-                                    <h5>Call now</h5>
-                                    <h2><a href="tel:+01-234-567-890">+94 77 811 8118</a></h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="home_client_wrpper">
-                            <h4>Our testimonials</h4>
-                            <h2>What our client say about us</h2>
-                            <div class="home-two-quote">
-                                <img src="assets/img/icon/quote.png" alt="img">
-                                <h3>Awesome service</h3>
-                            </div>
-                            <div class="home_two_client_slider  owl-theme owl-carousel">
-                                <div class="client_two_content">
-                                    <p>
-                                        Ad non quis quis commodo ut nostrud ipsum ad reprehenderit. Lorem eiusmod
-                                        excepteur anim adipisicing officia officia.
-                                    </p>
-                                    <div class="client_two_author">
-                                        <h5>Cameron douglas</h5>
-                                        <h6>Businessman</h6>
-                                    </div>
-                                </div>
-                                <div class="client_two_content">
-                                    <p>
-                                        Ad non quis quis commodo ut nostrud ipsum ad reprehenderit. Lorem eiusmod
-                                        excepteur anim adipisicing officia officia.
-                                    </p>
-                                    <div class="client_two_author">
-                                        <h5>Cameron douglas</h5>
-                                        <h6>Businessman</h6>
-                                    </div>
-                                </div>
-                                <div class="client_two_content">
-                                    <p>
-                                        Ad non quis quis commodo ut nostrud ipsum ad reprehenderit. Lorem eiusmod
-                                        excepteur anim adipisicing officia officia.
-                                    </p>
-                                    <div class="client_two_author">
-                                        <h5>Cameron douglas</h5>
-                                        <h6>Businessman</h6>
-                                    </div>
-                                </div>
-                                <div class="client_two_content">
-                                    <p>
-                                        Ad non quis quis commodo ut nostrud ipsum ad reprehenderit. Lorem eiusmod
-                                        excepteur anim adipisicing officia officia.
-                                    </p>
-                                    <div class="client_two_author">
-                                        <h5>Cameron douglas</h5>
-                                        <h6>Businessman</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our partners Area -->
-    <section id="our_partners" class="section_padding">
-        <div class="container">
-             /*Section Heading*/ 
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="section_heading_center">
-                        <h2>Our partners</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="partner_slider_area owl-theme owl-carousel">
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpgg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                        <div class="partner_logo">
-                            <a href="#!"><img src="assets/img/banner/111.jpg" alt="logo"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> 
+<script>
+$(document).ready(function(){
+    $(".home_two_banner_slider_wrapper").owlCarousel({
+        items: 1,               // One slide at a time
+        loop: true,             // Infinite loop
+        autoplay: true,         // Enable auto move
+        autoplayTimeout: 4000,  // Time between slides (ms)
+        autoplayHoverPause: true, // Pause when mouse hovers
+        animateOut: 'fadeOut',  // Optional fade effect
+        dots: true,             // Show navigation dots
+        nav: false              // Hide next/prev arrows
+    });
+});
+</script>
 
 <?php include 'components/footer.php'; ?>

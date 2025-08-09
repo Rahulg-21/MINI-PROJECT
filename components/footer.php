@@ -1,120 +1,132 @@
-    <!-- Footer  -->
-  <footer id="footer_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer_heading_area">
-                        <h5>Need any help?</h5>
-                    </div>
-                    <div class="footer_first_area">
-                        <div class="footer_inquery_area">
-                            <h5>Call 24/7 for any help</h5>
-                            <h3> <a href="tel:+00-123-456-789">+94 77 811 8118</a></h3>
-                        </div>
-                        <div class="footer_inquery_area">
-                            <h5>Mail to our support team</h5>
-                            <h3> <a href="mailto:support@domain.com">info@immitours.com</a></h3>
-                        </div>
-                        <div class="footer_inquery_area">
-                            <h5>Follow us on</h5>
-                            <ul class="soical_icon_footer">
-                                <li><a href="#!"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#!"><i class="fab fa-twitter-square"></i></a></li>
-                                <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+
+
+<!-- Footer -->
+<footer id="footer_area" style="background:url('assets/icons/foot_bg.png');background-size:cover;background-repeat:no-repeat;">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Info -->
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="footer_heading_area">
+                    <h5>Need any help?</h5>
                 </div>
-                <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6 col-12">
-                    <div class="footer_heading_area">
-                        <h5>Company</h5>
+                <div class="footer_first_area">
+                    <div class="footer_inquery_area">
+                        <h3><a href="tel:+94778118118"><span class="fas fa-phone"></span> +94 77 811 8118</a></h3>
                     </div>
-                    <div class="footer_link_area">
-                        <ul>
-                            <li><a href="about.php">About Us</a></li>
-                            <li><a href="testimonials.php">Testimonials</a></li>
-                            <li><a href="faqs.php">Rewards</a></li>
-                            <li><a href="terms-service.php">Work with Us</a></li>
-                            <li><a href="tour-guides.php">Meet the Team </a></li>
-                            <li><a href="news.php">Blog</a></li>
+                    <div class="footer_inquery_area">
+                        <h3><a href="mailto:info@keralatourism.com"><span class="fas fa-envelope"></span> info@keralatourism.com</a></h3>
+                    </div>
+                    <div class="footer_inquery_area">
+                        <h5>Follow us on</h5>
+                        <ul class="soical_icon_footer">
+                            <li><a href="https://www.facebook.com/keralatourism" class="fab fa-facebook fa-2x" target="_blank"></a></li>
+                            <li><a href="https://twitter.com/keralatourism" class="fab fa-twitter-square fa-2x" target="_blank"></a></li>
+                            <li><a href="https://www.instagram.com/keralatourism" class="fab fa-instagram fa-2x" target="_blank"></a></li>
+                            <li><a href="https://www.youtube.com/keralatourism" class="fab fa-youtube fa-2x" target="_blank"></a></li>
                         </ul>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                    <div class="footer_heading_area">
-                        <h5>Support</h5>
-                    </div>
-                    <div class="footer_link_area">
-                        <ul>
-                            <li><a href="dashboard.php">Account</a></li>
-                            <li><a href="faq.php">Faq</a></li>
-                            <li><a href="testimonials.php">Legal</a></li>
-                            <li><a href="contact.php">Contact</a></li>
-                            <li><a href="top-destinations.php"> Affiliate Program</a></li>
-                            <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                    <div class="footer_heading_area">
-                        <h5>Other Services</h5>
-                    </div>
-                    <div class="footer_link_area">
-                        <ul>
-                            <li><a href="top-destinations-details.html">Community program</a></li>
-                            <li><a href="top-destinations-details.html">Investor Relations</a></li>
-                            <li><a href="flight-search-result.html">Rewards Program</a></li>
-                            <li><a href="room-booking.html">PointsPLUS</a></li>
-                            <li><a href="testimonials.html">Partners</a></li>
-                            <li><a href="hotel-search.html">List My Hotel</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                    <div class="footer_heading_area">
-                        <h5>Top cities</h5>
-                    </div>
-                    <div class="footer_link_area">
-                        <ul>
-                            <li><a href="room-details.html">Chicago</a></li>
-                            <li><a href="hotel-details.html">New York</a></li>
-                            <li><a href="hotel-booking.html">San Francisco</a></li>
-                            <li><a href="tour-search.html">California</a></li>
-                            <li><a href="tour-booking.html">Ohio </a></li>
-                            <li><a href="tour-guides.html">Alaska</a></li>
-                        </ul>
+                    <div class="footer_inquery_area">
+                        <h5>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Kerala%2C%20India" target="_blank">
+                                <span class="fas fa-map-marker-alt"></span> Kerala Tourism Office, Thiruvananthapuram, Kerala
+                            </a>
+                        </h5>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer> 
-    <div class="copyright_area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="co-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="copyright_left">
-                        <p>Copyright © 2024 All Rights Reserved</p>
-                    </div>
+
+            <!-- Company -->
+            <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                <div class="footer_heading_area">
+                    <h5>About Kerala</h5>
                 </div>
-                <div class="co-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="copyright_right">
-                        <img src="assets/img/common/cards.png" alt="img">
-                    </div>
-                </div> 
+                <div class="footer_link_area">
+                    <ul>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="gallery.php">Gallery</a></li>
+                        <li><a href="sitemap.php">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                <div class="footer_heading_area">
+                    <h5>Support</h5>
+                </div>
+                <div class="footer_link_area">
+                    <ul>
+                        <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                        <li><a href="privacy-policy.php?#cookies">Cookie Policy</a></li>
+                        <li><a href="terms-condition.php">Terms & Conditions</a></li>
+                        <li><a href="faq.php">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Popular Destinations -->
+            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                <div class="footer_heading_area">
+                    <h5>Popular Destinations</h5>
+                </div>
+                <div class="footer_link_area">
+                    <ul>
+                        <li><a href="munnar.php">Munnar</a></li>
+                        <li><a href="alleppey.php">Alleppey</a></li>
+                        <li><a href="wayanad.php">Wayanad</a></li>
+                        <li><a href="kovalam.php">Kovalam</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experiences -->
+            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                <div class="footer_heading_area">
+                    <h5>Experiences</h5>
+                </div>
+                <div class="footer_link_area">
+                    <ul>
+                        <li><a href="houseboats.php">Houseboat Cruises</a></li>
+                        <li><a href="ayurveda.php">Ayurvedic Therapies</a></li>
+                        <li><a href="trekking.php">Trekking Trails</a></li>
+                        <li><a href="festivals.php">Festivals of Kerala</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</footer>
+
+<!-- Copyright -->
+<div class="copyright_area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="co-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="copyright_left">
+                    <p>Copyright © All rights reserved | Kerala Tourism</p>
+                </div>
+            </div>
+            <div class="co-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="copyright_left">
+                    <p>Designed & Developed for promoting Kerala’s beauty</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="go-top">
-        <i class="fas fa-chevron-up"></i>
-        <i class="fas fa-chevron-up"></i>
-    </div>
+</div>
+
+<!-- Back to Top -->
+<div class="go-top">
+    <i class="fas fa-chevron-up"></i>
+    <i class="fas fa-chevron-up"></i>
+</div>
 
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap js -->
     <script src="assets/js/bootstrap.bundle.js"></script>
-    <!-- Meanu js -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Meanu js -->
     <script src="assets/js/jquery.meanmenu.js"></script>
     <!-- owl carousel js -->
@@ -124,7 +136,11 @@
     <!-- Custom js -->
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/add-form.js"></script>
-    <script src="assets/js/video.js"></script>
+    <script src="assets/js/form-dropdown.js"></script>
+    <script src="assets/js/my.js?v=0.0001"></script>
+    <!-- TrustBox script -->
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<!-- End TrustBox script -->
 </body>
 
 </html>

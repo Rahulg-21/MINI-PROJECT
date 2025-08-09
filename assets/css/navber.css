@@ -1,3 +1,7 @@
+:root {
+    --navber-color:black;
+}
+
 .topbar-area {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -1148,12 +1152,12 @@
         height: 300px;
         -webkit-box-shadow: 0 7px 13px 0 rgba(0, 0, 0, .1);
         box-shadow: 0 7px 13px 0 rgba(0, 0, 0, .1);
-        background-color: #fff
+        background-color: #fff;
     }
 
     .main-responsive-nav .mean-container a.meanmenu-reveal {
         padding: 4px 0 0;
-        color: var(--navber-color)
+        color: red;
     }
 
     .main-responsive-nav .mean-container a.meanmenu-reveal span {
@@ -1178,7 +1182,7 @@
     .main-responsive-nav .logo {
         position: relative;
         z-index: 999;
-        width: 50%
+        width: 50%;
     }
 
     .navbar-area {
@@ -1205,6 +1209,12 @@
     .search-overlay .search-overlay-form {
         max-width: 280px;
         width: 280px
+    }
+
+    .main-responsive-nav.logo {
+        position: relative;
+        z-index: 999;
+        width: 10%;
     }
 
     .search-overlay .search-overlay-close {
@@ -1277,6 +1287,7 @@
         text-align: center;
         margin-top: 10px
     }
+ 
 }
 
 @media only screen and (min-width:325px) {
@@ -1284,12 +1295,23 @@
         top: -46px;
         right: 80px;
     }
+ .main-responsive-nav.logo {
+        position: relative;
+        z-index: 999;
+        width: 10%;
+    }
 }
 
 @media only screen and (min-width:768px) and (max-width:991px) {
     .others-option-for-responsive .container .container {
         max-width: 190px
     }
+    .main-responsive-nav.logo {
+        position: relative;
+        z-index: 999;
+        width: 10%;
+    }
+ 
 
     .others-option-for-responsive .option-inner .others-options {
         margin-left: 0
@@ -1350,6 +1372,11 @@
 @media only screen and (min-width:992px) and (max-width:1199px) {
     .others-option-for-responsive .container .container {
         max-width: 190px
+    }
+    .main-responsive-nav.logo {
+        position: relative;
+        z-index: 999;
+        width: 10%;
     }
 
     .others-option-for-responsive .option-inner .others-options {
@@ -1414,6 +1441,11 @@
 
     .main-navbar .navbar .others-options .option-item:first-child {
         margin-right: 30px
+    }
+    .main-responsive-nav.logo {
+        position: relative;
+        z-index: 999;
+        width: 10%;
     }
 }
 
