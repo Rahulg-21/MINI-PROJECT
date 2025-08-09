@@ -1,24 +1,130 @@
-<!-- components/footer.php -->
-<div class="tm-row">
-  <div class="tm-col-left text-center">            
-    <ul class="tm-bg-controls-wrapper">
-      <li class="tm-bg-control active" data-id="0"></li>
-      <li class="tm-bg-control" data-id="1"></li>
-      <li class="tm-bg-control" data-id="2"></li>
-    </ul>            
-  </div>
+    <!-- Footer  -->
+  <footer id="footer_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="footer_heading_area">
+                        <h5>Need any help?</h5>
+                    </div>
+                    <div class="footer_first_area">
+                        <div class="footer_inquery_area">
+                            <h5>Call 24/7 for any help</h5>
+                            <h3> <a href="tel:+00-123-456-789">+94 77 811 8118</a></h3>
+                        </div>
+                        <div class="footer_inquery_area">
+                            <h5>Mail to our support team</h5>
+                            <h3> <a href="mailto:support@domain.com">info@immitours.com</a></h3>
+                        </div>
+                        <div class="footer_inquery_area">
+                            <h5>Follow us on</h5>
+                            <ul class="soical_icon_footer">
+                                <li><a href="#!"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#!"><i class="fab fa-twitter-square"></i></a></li>
+                                <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-6 col-sm-6 col-12">
+                    <div class="footer_heading_area">
+                        <h5>Company</h5>
+                    </div>
+                    <div class="footer_link_area">
+                        <ul>
+                            <li><a href="about.php">About Us</a></li>
+                            <li><a href="testimonials.php">Testimonials</a></li>
+                            <li><a href="faqs.php">Rewards</a></li>
+                            <li><a href="terms-service.php">Work with Us</a></li>
+                            <li><a href="tour-guides.php">Meet the Team </a></li>
+                            <li><a href="news.php">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                    <div class="footer_heading_area">
+                        <h5>Support</h5>
+                    </div>
+                    <div class="footer_link_area">
+                        <ul>
+                            <li><a href="dashboard.php">Account</a></li>
+                            <li><a href="faq.php">Faq</a></li>
+                            <li><a href="testimonials.php">Legal</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <li><a href="top-destinations.php"> Affiliate Program</a></li>
+                            <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                    <div class="footer_heading_area">
+                        <h5>Other Services</h5>
+                    </div>
+                    <div class="footer_link_area">
+                        <ul>
+                            <li><a href="top-destinations-details.html">Community program</a></li>
+                            <li><a href="top-destinations-details.html">Investor Relations</a></li>
+                            <li><a href="flight-search-result.html">Rewards Program</a></li>
+                            <li><a href="room-booking.html">PointsPLUS</a></li>
+                            <li><a href="testimonials.html">Partners</a></li>
+                            <li><a href="hotel-search.html">List My Hotel</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                    <div class="footer_heading_area">
+                        <h5>Top cities</h5>
+                    </div>
+                    <div class="footer_link_area">
+                        <ul>
+                            <li><a href="room-details.html">Chicago</a></li>
+                            <li><a href="hotel-details.html">New York</a></li>
+                            <li><a href="hotel-booking.html">San Francisco</a></li>
+                            <li><a href="tour-search.html">California</a></li>
+                            <li><a href="tour-booking.html">Ohio </a></li>
+                            <li><a href="tour-guides.html">Alaska</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <div class="copyright_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="co-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="copyright_left">
+                        <p>Copyright © 2024 All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="co-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="copyright_right">
+                        <img src="assets/img/common/cards.png" alt="img">
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="go-top">
+        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-up"></i>
+    </div>
 
-  <div class="tm-col-right tm-col-footer">
-    <footer class="tm-site-footer text-right">
-      <p class="mb-0">
-        Website Design By | <a class="tm-text-link" href="#">RAHUL G</a>
-      </p>
-    </footer>
-  </div>        
-</div>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="assets/js/bootstrap.bundle.js"></script>
+    <!-- Meanu js -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Meanu js -->
+    <script src="assets/js/jquery.meanmenu.js"></script>
+    <!-- owl carousel js -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- wow.js -->
+    <script src="assets/js/wow.min.js"></script>
+    <!-- Custom js -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/add-form.js"></script>
+    <script src="assets/js/video.js"></script>
+</body>
 
-<!-- Diagonal background -->
-<div class="tm-bg">
-  <div class="tm-bg-right"></div>
-  <div class="tm-bg-right"></div>
-</div>
+</html>
