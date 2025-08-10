@@ -5,7 +5,7 @@
         <!-- Logo -->
         <div class="logo-w3-agile">
             <h1>
-                <a href="dashboard.php">Tourism Management System</a>
+                <a href="index.php">Kerala Tourism </a>
             </h1>
         </div>
 
@@ -15,12 +15,9 @@
                 <li class="dropdown profile_details_drop">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile_img">	
-                            <span class="prfil-img">
-                                <img src="" alt="image">
-                            </span> 
+                            
                             <div class="user-name">
-                                <p>Welcome</p>
-                                <span>Administrator</span>
+                                <p>ADMIN</p>
                             </div>
                             <i class="fa fa-angle-down"></i>
                             <i class="fa fa-angle-up"></i>

@@ -1,4 +1,7 @@
-<?php include 'components/head.php'; ?>
+<?php 
+include 'config.php'; // DB connection
+include 'components/head.php'; 
+?>
 <body>
 <?php include 'components/pre-loader.php'; ?>
 <header class="main_header_arae"></header>
@@ -13,26 +16,26 @@
   </div>
 </div>
 
-<!-- District Cards  district.php?name='.$slug.'-->
+<!-- District Cards -->
 <section id="districts" class="container">
   <div class="district-grid">
     <?php
-    $districts = [
-      "Thiruvananthapuram", "Kollam", "Pathanamthitta", "Alappuzha", "Kottayam",
-      "Idukki", "Ernakulam", "Thrissur", "Palakkad", "Malappuram",
-      "Kozhikode", "Wayanad", "Kannur", "Kasargod"
-    ];
+    $sql = "SELECT * FROM districts ORDER BY name ASC";
+    $result = $conn->query($sql);
 
-    foreach ($districts as $district) {
-      $slug = strtolower(str_replace(" ", "-", $district));
-      echo '
-      <div class="district-card">
-        <a href="explore.php">
-          <img src="assets/img/districts/'.$slug.'.jpg" alt="'.$district.'">
-        </a>
-        <h3>'.$district.'</h3>
-      </div>
-      ';
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        echo '
+        <div class="district-card">
+          <a href="explore.php?id='.$row['id'].'">
+            <img src="assets/img/districts/'.$row['image'].'" alt="'.$row['name'].'">
+          </a>
+          <h3>'.$row['name'].'</h3>
+        </div>
+        ';
+      }
+    } else {
+      echo "<p>No districts found.</p>";
     }
     ?>
   </div>

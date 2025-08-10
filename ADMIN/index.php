@@ -10,7 +10,7 @@ $total_pages = $conn->query("SELECT COUNT(*) AS count FROM pages")->fetch_assoc(
 <body>
 <div class="page-container">
     <div class="left-content">
-
+        <?php  include 'components/top-bar.php'; ?>
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a>
