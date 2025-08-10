@@ -23,8 +23,21 @@
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="map.php">Explore</a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="activites.php">Activities</a>
+     
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold" href="news.php">News</a>
+          <a class="nav-link text-white fw-semibold" href="culture.php">Cultures</a>
+        </li>
+           </li>
+          <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="destination.php">Wedding Destinations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="souvenirs.php">Souvenirs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="foods.php">Foods</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="about.php">About Us</a>
