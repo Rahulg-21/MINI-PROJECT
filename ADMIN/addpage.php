@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
 <body>
 <div class="page-container">
     <div class="left-content">
-        <?php include 'components/top-bar.php'; ?>
+        <?php // include 'components/top-bar.php'; ?>
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a>

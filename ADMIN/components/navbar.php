@@ -20,24 +20,24 @@
             <li id="menu-academico">
                 <a href="#">
                     <i class="fa fa-list-ul" aria-hidden="true"></i>
-                    <span>Top destinations</span>
+                    <span>Pages</span>
                     <span class="fa fa-angle-right" style="float: right"></span>
                     <div class="clearfix"></div>
                 </a>
                 <ul id="menu-academico-sub">
                     <li id="menu-academico-avaliacoes">
-                        <a href="create-destinations.php">Create</a>
+                        <a href="addpage.php">Add</a>
                     </li>
                     <li id="menu-academico-avaliacoes">
-                        <a href="manage-destinations.php">Manage</a>
+                        <a href="managepage.php">Manage</a>
                     </li>
                 </ul>
             </li>
 
             <li id="menu-academico">
-                <a href="manage-users.php">
+                <a href=" ">
                     <i class="fa fa-users" aria-hidden="true"></i>
-                    <span>Manage Users</span>
+                    <span>View</span>
                     <div class="clearfix"></div>
                 </a>
             </li>
