@@ -6,7 +6,21 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include 'components/head.php'; ?>
+include 'components/head.php'; 
+
+// Get selected category (if any)
+$selectedCategory = isset($_GET['category']) ? $_GET['category'] : "";
+
+// Fetch pages (filtered if category is selected)
+if ($selectedCategory) {
+    $stmt = $conn->prepare("SELECT * FROM pages WHERE category = ? ORDER BY id DESC");
+    $stmt->bind_param("s", $selectedCategory);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $result = $conn->query("SELECT * FROM pages ORDER BY id DESC");
+}
+?>
 
 <body>
 <div class="page-container">
@@ -18,16 +32,27 @@ include 'components/head.php'; ?>
             </li>
         </ol>
 
-      <?php
-
-
-// Fetch all pages
-$result = $conn->query("SELECT * FROM pages ORDER BY id DESC");
-?>
+<!-- Category Filter -->
+<div class="container mt-3 mb-4">
+    <form method="GET" class="form-inline">
+        <label class="mr-2 font-weight-bold">Select Category:</label>
+        <select name="category" class="form-control mr-2" onchange="this.form.submit()">
+            <option value="">*** All Pages ***</option>
+            <option value="Activity" <?= $selectedCategory=="Activity" ? "selected" : "" ?>>Activity</option>
+            <option value="Culture" <?= $selectedCategory=="Culture" ? "selected" : "" ?>>Culture</option>
+            <option value="Wedding Destinations" <?= $selectedCategory=="Wedding Destinations" ? "selected" : "" ?>>Wedding Destinations</option>
+            <option value="Souvenir" <?= $selectedCategory=="Souvenir" ? "selected" : "" ?>>Souvenir</option>
+            <option value="Food" <?= $selectedCategory=="Food" ? "selected" : "" ?>>Food</option>
+        </select>
+        <?php if ($selectedCategory): ?>
+            <a href="managepage.php" class="btn btn-secondary btn-sm">Reset</a>
+        <?php endif; ?>
+    </form>
+</div>
 
 <!-- Page Table -->
 <div class="container mt-4">
-    <h3>Pages List</h3>
+    <h3>Pages List <?= $selectedCategory ? " - " . htmlspecialchars($selectedCategory) : "" ?></h3>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
             <tr>
@@ -40,37 +65,43 @@ $result = $conn->query("SELECT * FROM pages ORDER BY id DESC");
             </tr>
         </thead>
         <tbody>
-            <?php while($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= $row['id'] ?></td>
-                <td><?= $row['category'] ?></td>
-                <td><?= $row['title'] ?></td>
-                <td>
-                    <img src="uploads/pages/<?= $row['image'] ?>" width="80" height="60" style="object-fit:cover;">
-                </td>
-                <td><?= substr($row['description'], 0, 80) ?>...</td>
-                <td>
-                    <!-- Edit Button -->
-                    <button 
-                        class="btn btn-warning btn-sm editBtn"
-                        data-id="<?= $row['id'] ?>"
-                        data-category="<?= $row['category'] ?>"
-                        data-title="<?= htmlspecialchars($row['title'], ENT_QUOTES) ?>"
-                        data-description="<?= htmlspecialchars($row['description'], ENT_QUOTES) ?>"
-                        data-image="<?= $row['image'] ?>"
-                        data-toggle="modal"
-                        data-target="#editModal"
-                    >Edit</button>
+            <?php if ($result->num_rows > 0): ?>
+                <?php while($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= $row['category'] ?></td>
+                    <td><?= $row['title'] ?></td>
+                    <td>
+                        <img src="uploads/pages/<?= $row['image'] ?>" width="80" height="60" style="object-fit:cover;">
+                    </td>
+                    <td><?= substr($row['description'], 0, 80) ?>...</td>
+                    <td>
+                        <!-- Edit Button -->
+                        <button 
+                            class="btn btn-warning btn-sm editBtn"
+                            data-id="<?= $row['id'] ?>"
+                            data-category="<?= $row['category'] ?>"
+                            data-title="<?= htmlspecialchars($row['title'], ENT_QUOTES) ?>"
+                            data-description="<?= htmlspecialchars($row['description'], ENT_QUOTES) ?>"
+                            data-image="<?= $row['image'] ?>"
+                            data-toggle="modal"
+                            data-target="#editModal"
+                        >Edit</button>
 
-                    <!-- Delete Button -->
-                    <a href="delete_page.php?id=<?= $row['id'] ?>" 
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Are you sure you want to delete this page?');">
-                       Delete
-                    </a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
+                        <!-- Delete Button -->
+                        <a href="delete_page.php?id=<?= $row['id'] ?>" 
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure you want to delete this page?');">
+                           Delete
+                        </a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6" class="text-center">No pages found for this category.</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>
@@ -147,13 +178,11 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 
-
-        <div class="inner-block"></div>
-
-        <div class="copyrights">
-            <p>TMS. All Rights Reserved | <a href="#">TMS</a></p>
+<div class="inner-block"></div>
+ <div class="copyrights">
+            <p>Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
         </div>
-    </div>
+</div>
 </div>
 
 <?php include 'components/navbar.php'; ?>

@@ -34,6 +34,23 @@
                 </ul>
             </li>
 
+              <li id="menu-academico">
+                <a href="#">
+                    <i class="fa fa-list-ul" aria-hidden="true"></i>
+                    <span>Tourist Spot</span>
+                    <span class="fa fa-angle-right" style="float: right"></span>
+                    <div class="clearfix"></div>
+                </a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-academico-avaliacoes">
+                        <a href="addtourist.php">Add</a>
+                    </li>
+                    <li id="menu-academico-avaliacoes">
+                        <a href="managespot.php">Manage</a>
+                    </li>
+                </ul>
+            </li>
+
             <li id="menu-academico">
                 <a href=" ">
                     <i class="fa fa-users" aria-hidden="true"></i>

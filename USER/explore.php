@@ -55,7 +55,7 @@ $spots_result = $conn->query($spots_sql);
                     <div class="news_item_boxed">
                         <div class="news_item_img">
                             <a href="explore-detail.php?id=<?php echo $spot['id']; ?>">
-                                <img src="../ADMIN/uploads/pages/ <?php echo $spot['image']; ?>" 
+                                <img src="../ADMIN/uploads/tourist_spots/<?php echo $spot['image']; ?>" 
                                      alt="<?php echo htmlspecialchars($spot['name']); ?>" 
                                      class="img-fluid" style="width:100%;height:250px;object-fit:cover;">
                             </a>
