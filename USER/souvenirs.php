@@ -1,6 +1,6 @@
 <?php 
 include 'components/head.php'; 
-include 'config.php'; // DB connection
+include '../CONFIG/config.php';
 
 // Enable error reporting for debugging 
 ini_set('display_errors', 1);
@@ -21,9 +21,9 @@ error_reporting(E_ALL);
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-               <div class="section_heading_center">
-                    <h2>Famous Foods of Kerala</h2>
-                    <p>Experience the authentic flavors of Kerala — from spicy curries to sweet delicacies.</p>
+                 <div class="section_heading_center">
+                    <h2>Souvenirs of Kerala</h2>
+                    <p>Take home a piece of Kerala — unique handicrafts, art, and specialties made with love.</p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@ error_reporting(E_ALL);
 
                 <?php
                 // Fetch wedding spots from DB
-                $query = "SELECT title, description, image FROM pages WHERE category = 'Food'";
+                $query = "SELECT title, description, image FROM pages WHERE category = 'Souvenir'";
                 $result = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($result)) {

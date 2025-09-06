@@ -1,6 +1,6 @@
 <?php 
 include 'components/head.php'; 
-include 'config.php'; // DB connection
+include '../CONFIG/config.php';
 
 // Enable error reporting for debugging 
 ini_set('display_errors', 1);

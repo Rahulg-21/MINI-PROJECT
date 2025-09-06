@@ -1,5 +1,5 @@
 <?php 
-include 'config.php'; // DB connection
+include '../CONFIG/config.php';
 include 'components/head.php'; 
 ?>
 <body>

@@ -1,5 +1,5 @@
 <?php
-include '../config.php'; // DB connection if needed
+include '../CONFIG/config.php'; // DB connection if needed
 
 // Optional: fetch counts of pages, categories, etc. for dashboard stats
 $total_pages = $conn->query("SELECT COUNT(*) AS count FROM pages")->fetch_assoc()['count'];

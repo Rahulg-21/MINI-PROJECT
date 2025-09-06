@@ -1,6 +1,6 @@
 <?php
 include 'components/head.php';
-include 'config.php'; // mysqli connection file
+include '../CONFIG/config.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -55,7 +55,7 @@ $spots_result = $conn->query($spots_sql);
                     <div class="news_item_boxed">
                         <div class="news_item_img">
                             <a href="explore-detail.php?id=<?php echo $spot['id']; ?>">
-                                <img src="ADMIN/uploads/pages/<?php echo $spot['image']; ?>" 
+                                <img src="../ADMIN/uploads/pages/ <?php echo $spot['image']; ?>" 
                                      alt="<?php echo htmlspecialchars($spot['name']); ?>" 
                                      class="img-fluid" style="width:100%;height:250px;object-fit:cover;">
                             </a>
