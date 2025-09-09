@@ -1,68 +1,128 @@
-<?php
-include '../CONFIG/config.php'; // DB connection if needed
-
-// Optional: fetch counts of pages, categories, etc. for dashboard stats
-$total_pages = $conn->query("SELECT COUNT(*) AS count FROM pages")->fetch_assoc()['count'];
-?>
-
 <?php include 'components/head.php'; ?>
-
 <body>
-<div class="page-container">
-    <div class="left-content">
-        <?php include 'components/top-bar.php'; ?>
-        
-        <!-- Breadcrumb -->
+
+<?php include 'components/navbar.php'; ?>
+
+<div class="content">
+    <!-- Top padding for fixed navbar -->
+    <div class="pt-4"></div>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="px-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.php">Home</a>
-                <i class="fa fa-angle-right"></i> Admin Dashboard
-            </li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
         </ol>
+    </nav>
 
-        <!-- Dashboard Welcome -->
-        <div class="grid-form">
-            <div class="grid-form1 text-center">
-                <h2>Welcome, Admin! 👋</h2>
-                <p class="lead">Manage your Kerala Tourism content from here.</p>
-
-                <!-- Stats Cards -->
-                <div class="row mt-4">
-                    <div class="col-md-4">
-                        <div class="card shadow-sm border-0 p-4 text-dark" style="background:#f8f9fa;">
-                            <h5>Total Pages</h5>
-                            <p style="font-size: 1.5rem; font-weight:bold;"><?= $total_pages; ?></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card shadow-sm border-0 p-4 text-dark" style="background:#f8f9fa;">
-                            <h5>Categories</h5>
-                            <p style="font-size: 1.5rem; font-weight:bold;">5</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card shadow-sm border-0 p-4 text-dark" style="background:#f8f9fa;">
-                            <h5>Pending Updates</h5>
-                            <p style="font-size: 1.5rem; font-weight:bold;">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="mt-5">
-                    <!-- you can add buttons like Manage Pages, Add Page etc. -->
-                </div>
+    <!-- Dashboard Cards -->
+    <div class="row g-3 px-3">
+        <!-- Total Pages -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card shadow-sm p-4 text-center">
+                <h6>Total Pages</h6>
+                <p class="display-6 fw-bold">12</p>
+                <i class="fa fa-file-text-o fa-2x text-success"></i>
             </div>
         </div>
 
-        <div class="inner-block"></div>
-
-        <!-- Footer -->
-         <div class="copyrights">
-            <p>Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
+        <!-- Categories -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card shadow-sm p-4 text-center">
+                <h6>Categories</h6>
+                <p class="display-6 fw-bold">5</p>
+                <i class="fa fa-list fa-2x text-primary"></i>
+            </div>
         </div>
+
+        <!-- Pending Updates -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card shadow-sm p-4 text-center">
+                <h6>Pending Updates</h6>
+                <p class="display-6 fw-bold">0</p>
+                <i class="fa fa-clock-o fa-2x text-warning"></i>
+            </div>
+        </div>
+
+        <!-- Total Users -->
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card shadow-sm p-4 text-center">
+                <h6>Total Users</h6>
+                <p class="display-6 fw-bold">320</p>
+                <i class="fa fa-users fa-2x text-danger"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="row g-3 mt-4 px-3">
+        <div class="col-lg-8 col-md-12">
+            <div class="card shadow-sm p-3 chart-card">
+                <h6>Page Visits (Graph)</h6>
+                <canvas id="visitsChart"></canvas>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card shadow-sm p-3 chart-card">
+                <h6>New Users (Graph)</h6>
+                <canvas id="usersChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="copyrights mt-4 text-center py-2 bg-light">
+        <p class="mb-0">Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
     </div>
 </div>
 
-<?php include 'components/navbar.php'; ?>
+<!-- Scripts -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// Charts
+const ctx1 = document.getElementById('visitsChart').getContext('2d');
+new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [{
+            label: 'Visits',
+            data: [120, 190, 300, 250, 400, 320],
+            borderColor: 'rgba(25, 135, 84, 1)',
+            backgroundColor: 'rgba(25, 135, 84, 0.2)',
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+});
+
+const ctx2 = document.getElementById('usersChart').getContext('2d');
+new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [{
+            label: 'New Users',
+            data: [20, 35, 40, 30, 50, 45],
+            backgroundColor: 'rgba(13, 110, 253, 0.7)'
+        }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+});
+</script>
+
+<style>
+/* Chart card fix */
+.chart-card {
+    height: 300px;
+}
+.chart-card canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+</style>
+
 </body>
 </html>

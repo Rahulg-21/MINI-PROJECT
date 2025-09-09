@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
         if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
             if (move_uploaded_file($image_tmp, $upload_folder)) {
                 // Insert into DB
-                $query = "INSERT INTO tourist_spot (district_id, name, image, description) 
+                $query = "INSERT INTO tourist_spots (district_id, name, image, description) 
                           VALUES ('$district_id', '$name', '$image', '$description')";
                 $query_run = mysqli_query($conn, $query);
 
@@ -50,78 +50,82 @@ if (isset($_POST['submit'])) {
 ?>
 
 <?php include 'components/head.php'; ?>
-
 <body>
-<div class="page-container">
-    <div class="left-content">
 
+<?php include 'components/navbar.php'; ?>
+
+<div class="content">
+    <!-- Top padding for fixed navbar -->
+    <div class="pt-4"></div>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="px-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.php">Home</a>
-                <i class="fa fa-angle-right"></i> Add Tourist Spot
-            </li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Tourist Spot</li>
         </ol>
+    </nav>
 
-        <div class="grid-form">
-            <div class="grid-form1">
-                <h3>Add Tourist Spot</h3>
-                <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    
-                    <!-- District -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Select District</label>
-                        <div class="col-sm-8">
-                            <select name="district_id" class="form-control" required>
-                                <option value="">***Select District***</option>
-                                <?php while ($row = $districts->fetch_assoc()) { ?>
-                                    <option value="<?= $row['id']; ?>"><?= $row['name']; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
+    <!-- Form Card -->
+    <div class="container-fluid px-3">
+        <div class="card shadow-sm p-4 mb-4">
+            <h5 class="mb-4">Add Tourist Spot</h5>
+            <form method="post" enctype="multipart/form-data">
+                
+                <!-- District -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Select District</label>
+                    <div class="col-sm-8">
+                        <select name="district_id" class="form-select" required>
+                            <option value="">*** Select District ***</option>
+                            <?php while ($row = $districts->fetch_assoc()) { ?>
+                                <option value="<?= $row['id']; ?>"><?= htmlspecialchars($row['name']); ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
+                </div>
 
-                    <!-- Tourist Spot Name -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Tourist Spot Name</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="name" class="form-control" placeholder="Enter tourist spot name" required>
-                        </div>
+                <!-- Tourist Spot Name -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Tourist Spot Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="name" class="form-control" placeholder="Enter tourist spot name" required>
                     </div>
+                </div>
 
-                    <!-- Image -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Image</label>
-                        <div class="col-sm-8">
-                            <input type="file" name="image" accept="image/*" class="form-control" required>
-                        </div>
+                <!-- Image -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="image" accept="image/*" class="form-control" required>
                     </div>
+                </div>
 
-                    <!-- Description -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Description</label>
-                        <div class="col-sm-8">
-                            <textarea name="description" rows="5" class="form-control" placeholder="Enter description" required></textarea>
-                        </div>
+                <!-- Description -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-8">
+                        <textarea name="description" rows="5" class="form-control" placeholder="Enter description" required></textarea>
                     </div>
+                </div>
 
-                    <!-- Submit -->
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            <button type="submit" name="submit" class="btn btn-primary">Add Tourist Spot</button>
-                        </div>
+                <!-- Submit -->
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2">
+                        <button type="submit" name="submit" class="btn btn-primary">Add Tourist Spot</button>
                     </div>
-
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="inner-block"></div>
-
-        <div class="copyrights">
-            <p>Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
-        </div>
+    <!-- Footer -->
+    <div class="copyrights mt-4 text-center py-2 bg-light">
+        <p class="mb-0">Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
     </div>
 </div>
 
-<?php include 'components/navbar.php'; ?>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

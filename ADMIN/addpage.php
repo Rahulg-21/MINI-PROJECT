@@ -6,7 +6,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 if (isset($_POST['submit'])) {
     $category = mysqli_real_escape_string($conn, $_POST['category']);
     $title = mysqli_real_escape_string($conn, $_POST['title']);
@@ -48,81 +47,84 @@ if (isset($_POST['submit'])) {
 ?>
 
 <?php include 'components/head.php'; ?>
-
 <body>
-<div class="page-container">
-    <div class="left-content">
-        <?php // include 'components/top-bar.php'; ?>
 
+<?php include 'components/navbar.php'; ?>
+
+<div class="content">
+    <!-- Top padding for fixed navbar -->
+    <div class="pt-4"></div>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="px-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.php">Home</a>
-                <i class="fa fa-angle-right"></i> Update Page Data
-            </li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Update Page Data</li>
         </ol>
+    </nav>
 
-        <div class="grid-form">
-            <div class="grid-form1">
-                <h3>Update Page Data</h3>
-                <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    
-                    <!-- Category -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Select Page</label>
-                        <div class="col-sm-8">
-                            <select name="category" class="form-control" required>
-                                <option value="">***Select One***</option>
-                                <option value="Activity">Activity</option>
-                                <option value="Culture">Culture</option>
-                                <option value="Wedding Destinations">Wedding Destinations</option>
-                                <option value="Souvenir">Souvenir</option>
-                                <option value="Food">Food</option>
-                            </select>
-                        </div>
+    <!-- Form Card -->
+    <div class="container-fluid px-3">
+        <div class="card shadow-sm p-4 mb-4">
+            <h5 class="mb-4">Update Page Data</h5>
+            <form method="post" enctype="multipart/form-data">
+                
+                <!-- Category -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Select Page</label>
+                    <div class="col-sm-8">
+                        <select name="category" class="form-select" required>
+                            <option value="">***Select One***</option>
+                            <option value="Activity">Activity</option>
+                            <option value="Culture">Culture</option>
+                            <option value="Wedding Destinations">Wedding Destinations</option>
+                            <option value="Souvenir">Souvenir</option>
+                            <option value="Food">Food</option>
+                        </select>
                     </div>
+                </div>
 
-                    <!-- Title -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Title</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="title" class="form-control" placeholder="Enter title" required>
-                        </div>
+                <!-- Title -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="title" class="form-control" placeholder="Enter title" required>
                     </div>
+                </div>
 
-                    <!-- Image -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Image</label>
-                        <div class="col-sm-8">
-                            <input type="file" name="image" accept="image/*" class="form-control" required>
-                        </div>
+                <!-- Image -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="image" accept="image/*" class="form-control" required>
                     </div>
+                </div>
 
-                    <!-- Description -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Description</label>
-                        <div class="col-sm-8">
-                            <textarea name="description" rows="5" class="form-control" placeholder="Enter description" required></textarea>
-                        </div>
+                <!-- Description -->
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-8">
+                        <textarea name="description" rows="5" class="form-control" placeholder="Enter description" required></textarea>
                     </div>
+                </div>
 
-                    <!-- Submit -->
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            <button type="submit" name="submit" class="btn btn-primary">Update</button>
-                        </div>
+                <!-- Submit -->
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2">
+                        <button type="submit" name="submit" class="btn btn-primary">Update</button>
                     </div>
-
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="inner-block"></div>
-
-        <div class="copyrights">
-            <p>Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
-        </div>
+    <!-- Footer -->
+    <div class="copyrights mt-4 text-center py-2 bg-light">
+        <p class="mb-0">Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
     </div>
 </div>
 
-<?php include 'components/navbar.php'; ?>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
