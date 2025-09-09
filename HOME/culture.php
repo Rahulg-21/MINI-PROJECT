@@ -31,7 +31,7 @@ error_reporting(E_ALL);
         while($row = mysqli_fetch_assoc($result)) {
             $title = htmlspecialchars($row['title']);
             $desc = nl2br(htmlspecialchars($row['description']));
-            $imagePath = "ADMIN/uploads/pages/" . htmlspecialchars($row['image']); // prepend folder path
+            $imagePath = "../ADMIN/uploads/pages/" . htmlspecialchars($row['image']); // prepend folder path
             
             $rowClass = $reverse ? "row align-items-center culture_row flex-row-reverse" : "row align-items-center culture_row";
             ?>

@@ -23,22 +23,22 @@
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="map.php">Explore</a>
         </li>
-          <li class="nav-item">
-          <a class="nav-link text-white fw-semibold" href="activites.php">Activities</a>
-     
-        <li class="nav-item">
-          <a class="nav-link text-white fw-semibold" href="culture.php">Cultures</a>
+
+        <!-- Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white fw-semibold" href="#" id="experienceDropdown" 
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Experiences
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="experienceDropdown">
+            <li><a class="dropdown-item" href="activites.php">Activities</a></li>
+            <li><a class="dropdown-item" href="culture.php">Cultures</a></li>
+            <li><a class="dropdown-item" href="destination.php">Wedding Destinations</a></li>
+            <li><a class="dropdown-item" href="souvenirs.php">Souvenirs</a></li>
+            <li><a class="dropdown-item" href="foods.php">Foods</a></li>
+          </ul>
         </li>
-           </li>
-          <li class="nav-item">
-          <a class="nav-link text-white fw-semibold" href="destination.php">Wedding Destinations</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fw-semibold" href="souvenirs.php">Souvenirs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fw-semibold" href="foods.php">Foods</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="about.php">About Us</a>
         </li>

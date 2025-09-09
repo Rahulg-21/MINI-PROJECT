@@ -39,7 +39,7 @@ error_reporting(E_ALL);
                 while ($row = mysqli_fetch_assoc($result)) {
                     $title = htmlspecialchars($row['title']);
                     $desc = nl2br(htmlspecialchars($row['description']));
-                    $imagePath = "ADMIN/uploads/pages/" . htmlspecialchars($row['image']);
+                    $imagePath = "../ADMIN/uploads/pages/" . htmlspecialchars($row['image']);
                 ?>
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="news_item_boxed">

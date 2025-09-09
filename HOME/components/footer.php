@@ -144,6 +144,8 @@
 <script src="assets/js/add-form.js"></script>
 <script src="assets/js/waypoints.min.js"></script>
 <script src="assets/js/jquery.counterup.min.js"></script>
+<!-- Bootstrap 5 JavaScript Bundle (with Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     jQuery(document).ready(function ($) {
@@ -153,5 +155,5 @@
         });
     });
 </script>
-
+</body>
 </html>
