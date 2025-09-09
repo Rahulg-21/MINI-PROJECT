@@ -25,25 +25,26 @@ if (isset($_POST['submit'])) {
     }
 
     if (!empty($district_id) && !empty($name) && !empty($image) && !empty($description)) {
-        if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            if (move_uploaded_file($image_tmp, $upload_folder)) {
-                // Insert into DB
-                $query = "INSERT INTO tourist_spots (district_id, name, image, description) 
-                          VALUES ('$district_id', '$name', '$image', '$description')";
-                $query_run = mysqli_query($conn, $query);
+    if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        if (move_uploaded_file($image_tmp, $upload_folder)) {
+            // Insert into DB with status = Approved
+            $query = "INSERT INTO tourist_spots (district_id, name, image, description, status) 
+                      VALUES ('$district_id', '$name', '$image', '$description', 'Approved')";
+            $query_run = mysqli_query($conn, $query);
 
-                if ($query_run) {
-                    echo '<script>alert("Tourist spot added successfully!");</script>';
-                } else {
-                    echo '<script>alert("Database error: ' . mysqli_error($conn) . '");</script>';
-                }
+            if ($query_run) {
+                echo '<script>alert("Tourist spot added successfully!");</script>';
             } else {
-                echo '<script>alert("Image upload failed.");</script>';
+                echo '<script>alert("Database error: ' . mysqli_error($conn) . '");</script>';
             }
         } else {
-            echo '<script>alert("Error uploading image.");</script>';
+            echo '<script>alert("Image upload failed.");</script>';
         }
     } else {
+        echo '<script>alert("Error uploading image.");</script>';
+    }
+}
+ else {
         echo '<script>alert("Please fill in all fields.");</script>';
     }
 }

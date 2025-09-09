@@ -64,4 +64,4 @@
 
 <!-- Register Modal-->
 <?php include 'components/login-modal.php'; ?>
-<?php include 'components/register-modal.php'; ?>
+

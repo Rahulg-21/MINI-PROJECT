@@ -18,8 +18,8 @@ if (!$district) {
     die("<h2>District not found!</h2>");
 }
 
-// Fetch tourist spots for the district
-$spots_sql = "SELECT * FROM tourist_spots WHERE district_id = $district_id";
+// Fetch only approved tourist spots for the district
+$spots_sql = "SELECT * FROM tourist_spots WHERE district_id = $district_id AND status = 'approved'";
 $spots_result = $conn->query($spots_sql);
 ?>
 

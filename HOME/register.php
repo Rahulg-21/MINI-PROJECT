@@ -4,61 +4,90 @@
 <header class="main_header_arae"></header>
 <?php include 'components/navbar.php'; ?>
 
-    <!--  Common Author Area -->
-    <section id="common_author_area" class="section_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="common_author_boxed">
-                        <div class="common_author_heading">
-                            <h3>Register account</h3>
-                            <h2>Register your account</h2>
-                        </div>
-                        <div class="common_author_form">
-                            <form action="#" id="main_author_form">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter first name*" required />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter last name*" required/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control"
-                                        placeholder="your email address (Optional)"required />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Mobile number*"required />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="User name*" required/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" required />
-                                </div>
-                                <div class="common_form_submit">
-                                    <button class="btn btn_theme btn_md" ><a href="login.php">_</a>Register</button>
-                                </div>
-                                <div class="have_acount_area other_author_option">
-                                    <div class="line_or">
-                                        <span>or</span>
-                                    </div>
-                                    <ul>
-                                        <li><a href="#!"><img src="assets/img/icon/google.png" alt="icon"></a></li>
-                                        <li><a href="#!"><img src="assets/img/icon/facebook.png" alt="icon"></a></li>
-                                        <li><a href="#!"><img src="assets/img/icon/twitter.png" alt="icon"></a></li>
-                                    </ul>
-                                    <p>Already have an account? <a href="login.php">Log in now</a></p>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+
+      <!-- Register Card -->
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        
+        <!-- Header -->
+        <div class="card-header text-white" 
+             style="background: linear-gradient(90deg, #2e7d32, #66bb6a);">
+          <h4 class="fw-bold mb-0">
+            <i class="bi bi-person-plus me-2"></i> Create Your Account
+          </h4>
         </div>
-    </section>
 
-    <!-- Cta Area -->
+        <!-- Body -->
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h4 class="fw-bold text-success">Join Kerala Tourism</h4>
+            <p class="text-muted">Register now to explore districts, book hotels, and discover tourist spots.</p>
+          </div>
 
+          <form action="register_submit.php" method="post" class="row g-3">
 
- 
+            <div class="col-md-6">
+              <label class="form-label fw-semibold"><i class="bi bi-person"></i> First Name</label>
+              <input type="text" name="first_name" class="form-control rounded-pill" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold"><i class="bi bi-person"></i> Last Name</label>
+              <input type="text" name="last_name" class="form-control rounded-pill" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold"><i class="bi bi-envelope"></i> Email</label>
+              <input type="email" name="email" class="form-control rounded-pill" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold"><i class="bi bi-phone"></i> Mobile</label>
+              <input type="text" name="mobile" class="form-control rounded-pill" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold"><i class="bi bi-person-circle"></i> Username</label>
+              <input type="text" name="username" class="form-control rounded-pill" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold"><i class="bi bi-lock"></i> Password</label>
+              <input type="password" name="password" class="form-control rounded-pill" required>
+            </div>
+
+            <div class="col-12 d-grid mt-4">
+              <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
+                <i class="bi bi-person-plus me-2"></i> Register
+              </button>
+            </div>
+          </form>
+
+          <!-- Social Login -->
+          <div class="text-center mt-4">
+            <div class="line_or my-3">
+              
+            </div>
+            <div>
+              <a href="#!" class="mx-2"><img src="assets/img/icon/google.png" alt="Google" width="35"></a>
+              <a href="#!" class="mx-2"><img src="assets/img/icon/facebook.png" alt="Facebook" width="35"></a>
+              <a href="#!" class="mx-2"><img src="assets/img/icon/twitter.png" alt="Twitter" width="35"></a>
+            </div>
+          </div>
+
+          <!-- Already Have Account -->
+          <div class="text-center mt-4">
+            <p class="mb-0">Already have an account? 
+              <a href="" class="fw-bold text-success">Login Now</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php include 'components/footer.php'; ?>

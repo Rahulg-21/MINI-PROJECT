@@ -52,11 +52,11 @@
           </div>
         </form>
 
-     <div class="text-center mt-4"> <p class="mb-0">Don’t have an account? <a href="#" class="fw-bold text-success" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Register Now</a> </p> </div>
+     <div class="text-center mt-4"> <p class="mb-0">Don’t have an account? <a href="register.php" class="fw-bold text-success" >Register Now</a> </p> </div>
 
       </div>
     </div>
   </div>
 </div>
 
-<?php include 'components/register-modal.php'; ?>
+

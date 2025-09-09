@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $query);
     <!-- Sidebar Filter -->
     <div class="col-lg-3 col-md-4 mb-3">
       <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header  bg-success  text-white">
           <h5 class="mb-0">Filter Emergency Services</h5>
         </div>
         <div class="card-body">
@@ -69,7 +69,7 @@ $result = mysqli_query($conn, $query);
               </select>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
+            <button type="submit" class="btn btn-success w-100">Apply Filter</button>
           </form>
         </div>
       </div>

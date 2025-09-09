@@ -38,10 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Update DB
-    $stmt = $conn->prepare("UPDATE tourist_spots 
-        SET district_id = ?, name = ?, description = ?, image = ? 
-        WHERE id = ?");
-    $stmt->bind_param("isssi", $district_id, $name, $description, $newImage, $id);
+   // Update DB
+$stmt = $conn->prepare("UPDATE tourist_spots 
+    SET district_id = ?, name = ?, description = ?, image = ?, status = 'Approved' 
+    WHERE id = ?");
+$stmt->bind_param("isssi", $district_id, $name, $description, $newImage, $id);
+
 
     if ($stmt->execute()) {
         header("Location: managespot.php?msg=updated");
