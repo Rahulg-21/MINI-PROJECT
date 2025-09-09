@@ -19,6 +19,17 @@
                 <li><a href="managepage.php">⚙ Manage</a></li>
             </ul>
         </li>
+          <li title="Emergency">
+            <a href="#touristSubmenu" class="submenu-toggle">
+                <i class="fa fa-map-marker"></i>
+                <span class="label">Emergency</span>
+                <i class="fa fa-angle-down ms-auto"></i>
+            </a>
+            <ul class="collapse" id="touristSubmenu">
+                <li><a href="addemergency.php">➕ Add</a></li>
+                <li><a href="manageemergency.php">⚙ Manage</a></li>
+            </ul>
+        </li>
         <li title="Tourist Spots">
             <a href="#touristSubmenu" class="submenu-toggle">
                 <i class="fa fa-map-marker"></i>

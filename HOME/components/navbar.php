@@ -26,6 +26,9 @@
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="map.php">Explore</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="emergency.php">Emergency</a>
+        </li>
 
         <!-- Dropdown Menu -->
         <li class="nav-item dropdown">
