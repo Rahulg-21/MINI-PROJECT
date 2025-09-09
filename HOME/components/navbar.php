@@ -1,3 +1,6 @@
+
+
+
 <!-- Bootstrap 5 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light" 
      style="background: linear-gradient(90deg, #1b5e20, #388e3c, #81c784);">
@@ -48,7 +51,14 @@
       </ul>
 
       <!-- Right Side Button -->
-      <a href="register.php" class="btn btn-light ms-lg-3 fw-bold">Register/Login</a>
+     <button class="btn btn-light ms-lg-3 fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">
+  Register / Login
+</button>
+
     </div>
   </div>
 </nav>
+
+<!-- Register Modal-->
+<?php include 'components/login-modal.php'; ?>
+<?php include 'components/register-modal.php'; ?>

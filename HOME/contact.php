@@ -10,77 +10,75 @@
 <br><br><br><br>
 
     <!-- Contact Area -->
-    <section id="contact_main_arae" class="section_padding">
+    <section id="contact_main_area" class="section_padding">
         <div class="container">
+            <!-- Heading -->
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-12 text-center">
                     <div class="section_heading_center">
-                        <h2>Contact with us</h2>
+                        <h2>Contact Kerala Tourism</h2>
+                        <p class="text-muted">We’d love to assist you with your travel plans in Kerala</p>
                     </div>
                 </div>
             </div>
-            <div class="contact_main_form_area_two">
+
+            <div class="contact_main_form_area_two mt-4">
                 <div class="row">
+                    <!-- Contact Form -->
                     <div class="col-lg-8">
-                        <div class="contact_left_top_heading">
+                        <div class="contact_left_top_heading mb-3">
                             <h3>Leave us a message</h3>
-                            <p>For a prompt and courteous service</p>
+                            <p>Our team will get back to you as soon as possible</p>
                         </div>
                         <div class="contact_form_two">
-                            <form action="!#" id="contact_form_content">
+                            <form action="contact_submit.php" method="post" id="contact_form_content">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control bg_input" placeholder="First name*">
-                                        </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" name="first_name" class="form-control bg_input" placeholder="First name*" required>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control bg_input" placeholder="Last name*">
-                                        </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" name="last_name" class="form-control bg_input" placeholder="Last name*" required>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control bg_input"
-                                                placeholder="Email address (Optional)">
-                                        </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="email" name="email" class="form-control bg_input" placeholder="Email address*">
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control bg_input"
-                                                placeholder="Mobile number*">
-                                        </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" name="phone" class="form-control bg_input" placeholder="Mobile number*" required>
+                                    </div>
+                                    <div class="col-lg-12 mb-3">
+                                        <textarea name="message" class="form-control bg_input" rows="5" placeholder="Your message*" required></textarea>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control bg_input" rows="5"
-                                                placeholder="Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn_theme btn_md">Send message</button>
-                                        </div>
+                                        <button type="submit" class="btn btn_theme btn_md">Send Message</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
+
+                    <!-- Contact Details -->
                     <div class="col-lg-4">
                         <div class="contact_two_left_wrapper">
-                            <h3>Contact details</h3>
-                            <div class="contact_details_wrapper">
-                                <div class="contact_detais_item">
-                                    <h4>Help line</h4>
-                                    <h3><a href="tel:+94778118118">+94 77 811 811 8</a></h3>
+                            <h3>Contact Details</h3>
+                            <div class="contact_details_wrapper mt-3">
+                                <div class="contact_detais_item mb-3">
+                                    <h4>Tourism Helpline</h4>
+                                    <h3><a href="tel:+914712320113">+91 471 2320 113</a></h3>
+                                    <small class="text-muted">24x7 Kerala Tourism Info Service</small>
+                                </div>
+                                <div class="contact_detais_item mb-3">
+                                    <h4>Email Support</h4>
+                                    <h3><a href="mailto:info@keralatourism.org">info@keralatourism.org</a></h3>
+                                </div>
+                                <div class="contact_detais_item mb-3">
+                                    <h4>Office Hours</h4>
+                                    <h3>Mon – Sat : 9:00 AM – 6:00 PM</h3>
                                 </div>
                                 <div class="contact_detais_item">
-                                    <h4>Support mail</h4>
-                                    <h3><a href="mailto:info@imitours.com">info@immitours.com</a></h3>
-                                </div>
-                                <div class="contact_detais_item">
-                                    <h4>Contact hour</h4>
-                                    <h3>Mon-Sun : 9:00 AM To 7:00PM</h3>
+                                    <h4>Head Office</h4>
+                                    <h3>Department of Tourism,<br>
+                                    Park View, Thiruvananthapuram,<br>
+                                    Kerala – 695033</h3>
                                 </div>
                             </div>
                         </div>
@@ -90,6 +88,4 @@
         </div>
     </section>
 
-    <?php
-      include 'components/footer.php';
-     ?>
+    <?php include 'components/footer.php'; ?>

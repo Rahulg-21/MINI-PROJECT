@@ -31,4 +31,25 @@
     <link rel="icon" type="image/png" href="assets/img/logo_immi.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+function switchToRegister() {
+  var loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+  loginModal.hide();
+  loginModal._element.addEventListener('hidden.bs.modal', function () {
+    var registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+    registerModal.show();
+  }, { once: true });
+}
+
+function switchToLogin() {
+  var registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+  registerModal.hide();
+  registerModal._element.addEventListener('hidden.bs.modal', function () {
+    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+    loginModal.show();
+  }, { once: true });
+}
+</script>
+
+
 </head>

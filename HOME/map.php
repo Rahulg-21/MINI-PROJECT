@@ -3,18 +3,30 @@ include '../CONFIG/config.php';
 include 'components/head.php'; 
 ?>
 <body>
+  <style>
+    #kerala-map {
+  width: 100%;           /* Take full width */
+  max-width: 100%;       /* Remove the 600px limit */
+  height: 350px;         /* Fix reduced height */
+  object-fit: contain;   /* Maintain aspect ratio, no cropping */
+  display: block;
+  margin: 0 auto;        /* Center horizontally */
+}
+</style>
 <?php include 'components/pre-loader.php'; ?>
 <header class="main_header_arae"></header>
 <?php include 'components/navbar.php'; ?>
 
 <!-- Kerala Map -->
-<div id="map-wrapper">
-  <div id="map-background">
-    <div id="map-container" class="mb-4 text-center">
-      <img src="assets/img/Kerala-map.svg" alt="Kerala Map" id="kerala-map">
-    </div>
+<div class="container-fluid my-4">
+  <div class="text-center">
+    <img src="assets/img/Kerala-map.svg" 
+         alt="Kerala Map" 
+         class="img-fluid w-100" 
+         style="max-height: 850px; object-fit: contain;">
   </div>
 </div>
+
 
 <!-- District Cards -->
 <section id="districts" class="container">

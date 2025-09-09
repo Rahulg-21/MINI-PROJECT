@@ -146,6 +146,16 @@
 <script src="assets/js/jquery.counterup.min.js"></script>
 <!-- Bootstrap 5 JavaScript Bundle (with Popper.js) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Always remove leftover backdrops after any modal closes
+document.addEventListener('hidden.bs.modal', function () {
+  document.querySelectorAll('.modal-backdrop').forEach(function(el) {
+    el.remove();
+  });
+  document.body.classList.remove('modal-open');
+  document.body.style.overflow = ''; // reset scroll lock
+});
+</script>
 
 <script>
     jQuery(document).ready(function ($) {
