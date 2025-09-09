@@ -4,6 +4,10 @@
 A web-based portal to explore Kerala’s tourist attractions, hotels, emergency services, and cultural highlights.  
 The system includes **Admin Panel** for management and **User Portal** for browsing content.
 
+http://localhost/Kerala-Tourism/ADMIN/index.php
+
+http://localhost/Kerala-Tourism/HOME/index.php
+
 ---
 
 ## 📂 Project Structure

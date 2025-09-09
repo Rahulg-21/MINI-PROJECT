@@ -1,108 +1,143 @@
-<?php include 'components/head.php'; ?>
+<?php 
+include 'components/head.php'; 
+include '../CONFIG/config.php'; 
+session_start();
+
+// Mock user session id (replace with real login later)
+$_SESSION['user_id'] = 1; 
+
+// Get tourist spot id
+$spot_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// Fetch tourist spot
+$stmt = $conn->prepare("SELECT * FROM tourist_spots WHERE id = ?");
+$stmt->bind_param("i", $spot_id);
+$stmt->execute();
+$spot = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+
+// Fetch emergency services for same district
+$district_id = $spot['district_id'];
+$eservices = $conn->query("SELECT * FROM emergency_services WHERE district_id = $district_id")->fetch_all(MYSQLI_ASSOC);
+?>
 
 <body>
 <?php include 'components/pre-loader.php'; ?>
-    <!-- Header Area -->
-    <header class="main_header_arae"> </header>
-
-    <?php include 'components/navbar.php'; ?>
-
+<header class="main_header_arae"></header>
+<?php include 'components/navbar.php'; ?>
 
 <br><br><br>
-    <!-- News Area -->
-    <section id="news_details_main_arae" class="section_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="news_detail_wrapper">
-                        <div class="news_details_content_area">
-    <img src="https://www.holidify.com/images/cmsuploads/square/6580072031_bd440e0838_b_20180205133850.jpg" alt="Sree Padmanabhaswamy Temple">
-    <h2>Sree Padmanabhaswamy Temple</h2>
-    <p>
-        Sree Padmanabhaswamy Temple, located in Thiruvananthapuram, is one of the most famous and sacred Hindu temples in India.
-        Dedicated to Lord Vishnu, who is enshrined here in the “Anantha Shayana” (eternal yogic sleep) posture on the serpent Adi Sesha,
-        the temple is renowned for its intricate Dravidian-style architecture, high walls, and golden gopuram.
-    </p>
-    <p>
-        The temple is counted among the 108 Divya Desams — holy abodes of Lord Vishnu mentioned in Vaishnava tradition.
-        Entry is restricted to Hindu devotees only, and strict dress codes are enforced.
-        Apart from its spiritual significance, the temple gained worldwide attention for the vast treasures discovered in its underground vaults.
-    </p>
-    
-    <h3>Interesting Facts about Sree Padmanabhaswamy Temple</h3>
-    <ul>
-        <li><i class="fas fa-circle"></i> The temple's idol is over 18 feet long, made with 12,000 salagramams (sacred stones) from the Gandaki River in Nepal.</li>
-        <li><i class="fas fa-circle"></i> The golden gopuram (tower) stands 100 feet high and is adorned with intricate carvings.</li>
-        <li><i class="fas fa-circle"></i> It is considered the richest temple in the world due to the immense treasures found in its vaults.</li>
-        <li><i class="fas fa-circle"></i> The annual Alpasi and Painkuni festivals are celebrated with great devotion and grandeur.</li>
-    </ul>
-
-    <h3>Visiting Information</h3>
-    <p>
-        The temple is located in the East Fort area of Thiruvananthapuram and is easily accessible by road, rail, and air.
-        Non-Hindus are not allowed inside the sanctum, but can admire the temple’s exterior beauty.
-        Dress code: Men must wear mundu (traditional dhoti) without a shirt, and women must wear sarees or traditional attire.
-    </p>
-</div>
-
-                                             
+<section id="news_details_main_arae" class="section_padding">
+    <div class="container">
+        <div class="row">
+            <!-- Tourist Spot Details -->
+            <div class="col-lg-8">
+                <div class="news_detail_wrapper">
+                    <div class="news_details_content_area">
+                        <img src="../ADMIN/uploads/tourist_spots/<?php echo $spot['image']; ?>" 
+                             alt="<?php echo $spot['name']; ?>" class="img-fluid mb-3">
+                        <h2><?php echo $spot['name']; ?></h2>
+                        <p><?php echo $spot['description']; ?></p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="news_details_rightbar">
-                    <div class="news_details_right_item">
-    <h3>Hotels</h3>
-    <div class="hotel_scroll">
-        <?php
-        $hotels = [
-            ["name" => "Hotel RAM", "img" => "assets/img/destination/batti.jpg", "link" => "https://hotelram.com"],
-            ["name" => "Hotel RAM", "img" => "assets/img/destination/batti.jpg", "link" => "https://hotelram.com"],
-            ["name" => "Hotel RAJA RAM", "img" => "assets/img/destination/batti.jpg", "link" => "https://hotelrajaram.com"],
-            ["name" => "Hotel SREE RAM", "img" => "assets/img/destination/batti.jpg", "link" => "https://hotelsreeram.com"]
-        ];
 
-        foreach ($hotels as $hotel) {
-            echo '
-            <div class="recent_news_item">
-                <div class="recent_news_img">
-                    <a href="'.$hotel["link"].'" target="_blank">
-                        <img src="'.$hotel["img"].'" alt="'.$hotel["name"].'">
-                    </a>
+                <!-- Horizontal Hotel Cards -->
+                <h3 class="mt-5 mb-3">Nearby Hotels</h3>
+                <div class="d-flex overflow-auto pb-3" style="gap:15px;">
+                    <?php 
+                    $hotels = [
+                        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
+                        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
+                        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
+                        ["name"=>"Hill View","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
+                        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
+                        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
+                        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"]
+                    ];
+                    foreach($hotels as $h){
+                        echo '
+                        <div class="card" style="min-width:200px;">
+                            <img src="'.$h['img'].'" class="card-img-top" alt="'.$h['name'].'">
+                            <div class="card-body">
+                                <h6 class="card-title">'.$h['name'].'</h6>
+                                <a href="'.$h['link'].'" class="btn btn-success btn-sm">View</a>
+                            </div>
+                        </div>';
+                    }
+                    ?>
                 </div>
-                <div class="recent_news_text">
-                    <h5><a href="'.$hotel["link"].'" target="_blank">'.$hotel["name"].'</a></h5>
+
+                <!-- Emergency Services -->
+                <h3 class="mt-5 mb-3">Emergency Services</h3>
+                <div class="row">
+                    <?php foreach($eservices as $e){ ?>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <?php if($e['image']){ ?>
+                                    <img src="../ADMIN/uploads/emergency/<?php echo $e['image']; ?>" 
+                                         class="card-img-top" alt="<?php echo $e['name']; ?>">
+                                <?php } ?>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $e['name']; ?></h5>
+                                    <p class="card-text"><?php echo $e['description']; ?></p>
+                                    <p><strong>Contact:</strong> <?php echo $e['contact']; ?></p>
+                                    <p><strong>Type:</strong> <?php echo $e['type']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
-            ';
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Booking Form -->
+                <div class="news_details_right_item mb-4">
+                    <h3>Plan Your Visit</h3>
+                    <form action="book_guide.php" method="POST">
+                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                        <input type="hidden" name="spot_id" value="<?php echo $spot['id']; ?>">
+                        <div class="form-group mb-3">
+                            <label>Date</label>
+                            <input type="date" name="date" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Time</label>
+                            <input type="time" name="time" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Book Guide</button>
+                    </form>
+                </div>
+
+                <!-- Guides List -->
+<div class="news_details_right_item">
+    <h3>Available Guides</h3>
+    <div class="overflow-auto" style="max-height: 300px; padding-right: 5px;">
+        <?php 
+        $guides = [
+            ["name"=>"Ramesh","img"=>"assets/img/tour-guides/g1.jpg","link"=>"#"],
+            ["name"=>"Anil","img"=>"assets/img/tour-guides/g2.jpg","link"=>"#"],
+            ["name"=>"Suresh","img"=>"assets/img/tour-guides/g3.jpg","link"=>"#"],
+            ["name"=>"Ramesh","img"=>"assets/img/tour-guides/g1.jpg","link"=>"#"],
+            ["name"=>"Anil","img"=>"assets/img/tour-guides/g2.jpg","link"=>"#"]
+        ];
+        foreach($guides as $g){
+            echo '
+            <div class="card mb-2 shadow-sm" style="border:1px solid #ddd;">
+                <div class="d-flex align-items-center p-2">
+                    <img src="'.$g['img'].'" style="width:50px; height:50px; object-fit:cover; border-radius:50%;" alt="'.$g['name'].'">
+                    <h6 class="ms-3 mb-0">'.$g['name'].'</h6>
+                </div>
+            </div>';
         }
         ?>
     </div>
 </div>
 
-    <div class="news_details_right_item">
-    <h3>Get real time news</h3>
-    <div class="news_tags_area">
-        <form action="subscribe.php" method="POST">
-            <div class="form-group mb-3">
-                <label for="travelTag" class="form-label">Enter a place or tag</label>
-                <input type="text" id="travelTag" name="tag" class="form-control" placeholder="e.g. Thiruvananthapuram" required>
-            </div>
-            <div class="form-group mb-3">
-                <label for="travelDate" class="form-label">Planned travel date</label>
-                <input type="date" id="travelDate" name="date" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Subscribe for Updates</button>
-        </form>
-    </div>
-   </div>
 
-                      
-                    </div>
-                </div>
             </div>
         </div>
-    </section>
-
-
+    </div>
+</section>
 
 <?php include 'components/footer.php'; ?>
