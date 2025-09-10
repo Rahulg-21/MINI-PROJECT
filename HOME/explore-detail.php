@@ -1,13 +1,62 @@
 <?php 
+session_start();
+  if (!isset($_SESSION['user_id'])) {
+         echo "<script>
+                        alert('Login First');
+                        window.location='map.php';
+                      </script>";
+                exit();
+}
 include 'components/head.php'; 
 include '../CONFIG/config.php'; 
-session_start();
 
-// Mock user session id (replace with real login later)
-$_SESSION['user_id'] = 1; 
+
 
 // Get tourist spot id
 $spot_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // If user not logged in, redirect
+  
+
+    $user_id = $_SESSION['user_id'];
+    $spot_id = intval($_POST['spot_id']);
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+
+    // Combine date + time into one DateTime object
+    $visit_datetime = strtotime($date . ' ' . $time);
+    $now = time();
+
+    if ($visit_datetime < $now) {
+        // ❌ User selected a past date/time
+        $error_message = "You cannot book a visit in the past. Please select a valid date and time.";
+    } else {
+        // Fetch district id from tourist_spots
+        $stmt = $conn->prepare("SELECT district_id FROM tourist_spots WHERE id = ?");
+        $stmt->bind_param("i", $spot_id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        $district_id = $result['district_id'] ?? 0;
+        $stmt->close();
+
+        // Insert into bookings
+        $stmt = $conn->prepare("INSERT INTO bookings (user_id, spot_id, district_id, visit_date, visit_time) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiiss", $user_id, $spot_id, $district_id, $date, $time);
+
+        if ($stmt->execute()) {
+            // ✅ Booking successful
+            $success_message = "Your booking has been confirmed! You will receive updates via email.";
+        } else {
+            $error_message = "Something went wrong. Please try again.";
+        }
+        $stmt->close();
+    }
+}
+
+
+
+
 
 // Fetch tourist spot
 $stmt = $conn->prepare("SELECT * FROM tourist_spots WHERE id = ?");
@@ -91,10 +140,17 @@ $eservices = $conn->query("SELECT * FROM emergency_services WHERE district_id = 
 
             <!-- Sidebar -->
             <div class="col-lg-4">
-                <!-- Booking Form -->
+                
                 <div class="news_details_right_item mb-4">
                     <h3>Plan Your Visit</h3>
-                    <form action="book_guide.php" method="POST">
+                    <form action="" method="POST">
+                        <?php if (!empty($success_message)): ?>
+    <div class="alert alert-success"><?php echo $success_message; ?></div>
+<?php endif; ?>
+<?php if (!empty($error_message)): ?>
+    <div class="alert alert-danger"><?php echo $error_message; ?></div>
+<?php endif; ?>
+
                         <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
                         <input type="hidden" name="spot_id" value="<?php echo $spot['id']; ?>">
                         <div class="form-group mb-3">
@@ -105,7 +161,7 @@ $eservices = $conn->query("SELECT * FROM emergency_services WHERE district_id = 
                             <label>Time</label>
                             <input type="time" name="time" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Book Guide</button>
+                        <button type="submit" class="btn btn-success w-100">SUBMIT</button>
                     </form>
                 </div>
 

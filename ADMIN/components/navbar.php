@@ -42,6 +42,7 @@
             </ul>
         </li>
         <li title="Approve Spots"><a href="approvetouristspot.php"><i class="fa fa-users"></i><span class="label">Approve Spots</span></a></li>
+        <li title="View Contact Msg"><a href="viewContact.php"><i class="fa fa-users"></i><span class="label">View Contact Msg</span></a></li>
         <li title="Logout"><a href=""><i class="fa fa-sign-out"></i><span class="label">Logout</span></a></li>
     </ul>
 </div>

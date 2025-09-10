@@ -5,6 +5,9 @@
         <h4>User Dashboard</h4>
     </div>
     <ul>
+        <li title="HOME">
+            <a href="../HOME/index.php"><span class="label">HOME</span></a>
+        </li>
         <li title="Dashboard">
             <a href="index.php"><span class="label">Dashboard</span></a>
         </li>
@@ -18,7 +21,7 @@
         </li>
 
         <li title="Place Bookings">
-            <a href="view_place_bookings.php"><span class="label">Place Bookings</span></a>
+            <a href="viewBooking.php"><span class="label">Place Bookings</span></a>
         </li>
 
        
@@ -26,7 +29,7 @@
             <a href="addTourist.php"><span class="label">Add Tourist Spot</span></a>
         </li>
          <li title="Logout">
-            <a href="logout.php"><span class="label">Logout</span></a>
+            <a href="logout.php"><span class="label ">Logout</span></a>
         </li>
     </ul>
 </div>
