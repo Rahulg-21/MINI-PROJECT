@@ -52,31 +52,9 @@ Kerala-Tourism/
 - **Backend**: PHP (modular, component-based)  
 - **Database**: MySQL (InnoDB, foreign keys for districts, services, pages, etc.)  
 
----
-
-## 🚀 Setup Instructions
-1. Clone project into your web server directory:
-   ```bash
-   git clone <repo-url> /var/www/html/Kerala-Tourism
-````
-
-2. Import database from provided `.sql` file.
-3. Update database credentials in `CONFIG/config.php`.
-4. Access via browser:
-
-   * **User Site** → `http://localhost/Kerala-Tourism/USER/index.php`
-   * **Admin Panel** → `http://localhost/Kerala-Tourism/ADMIN/index.php`
-
----
-
-## 📌 Notes
-
-* Uploads are stored under `ADMIN/uploads/`.
-* Districts are linked to pages, tourist spots, and emergency services.
-* Ensure `uploads/` directory has write permissions.
 
 ---
 
 ✨ Developed for showcasing Kerala’s rich tourism experience.
 
-```
+
