@@ -1,6 +1,4 @@
-
-
-
+<?php session_start(); ?>
 <!-- Bootstrap 5 Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light" 
      style="background: linear-gradient(90deg, #1b5e20, #388e3c, #81c784);">
@@ -54,14 +52,20 @@
       </ul>
 
       <!-- Right Side Button -->
-     <button class="btn btn-light ms-lg-3 fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">
-  Register / Login
-</button>
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="../USER/index.php" class="btn btn-light ms-lg-3 fw-bold">Dashboard</a>
+       
+      <?php else: ?>
+        <button class="btn btn-light ms-lg-3 fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">
+          Register / Login
+        </button>
+      <?php endif; ?>
 
     </div>
   </div>
 </nav>
 
-<!-- Register Modal-->
-<?php include 'components/login-modal.php'; ?>
-
+<!-- Login Modal only for guests -->
+<?php if (!isset($_SESSION['user_id'])): ?>
+  <?php include 'components/login-modal.php'; ?>
+<?php endif; ?>
