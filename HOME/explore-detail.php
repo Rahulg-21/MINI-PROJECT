@@ -1,38 +1,32 @@
 <?php 
 session_start();
-  if (!isset($_SESSION['user_id'])) {
-         echo "<script>
-                        alert('Login First');
-                        window.location='map.php';
-                      </script>";
-                exit();
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>
+            alert('Login First');
+            window.location='map.php';
+          </script>";
+    exit();
 }
 include 'components/head.php'; 
 include '../CONFIG/config.php'; 
 
-
-
 // Get tourist spot id
 $spot_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+// Handle booking form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // If user not logged in, redirect
-  
-
     $user_id = $_SESSION['user_id'];
     $spot_id = intval($_POST['spot_id']);
     $date = $_POST['date'];
     $time = $_POST['time'];
 
-    // Combine date + time into one DateTime object
     $visit_datetime = strtotime($date . ' ' . $time);
     $now = time();
 
     if ($visit_datetime < $now) {
-        // ❌ User selected a past date/time
         $error_message = "You cannot book a visit in the past. Please select a valid date and time.";
     } else {
-        // Fetch district id from tourist_spots
+        // Fetch district id
         $stmt = $conn->prepare("SELECT district_id FROM tourist_spots WHERE id = ?");
         $stmt->bind_param("i", $spot_id);
         $stmt->execute();
@@ -40,12 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $district_id = $result['district_id'] ?? 0;
         $stmt->close();
 
-        // Insert into bookings
+        // Insert booking
         $stmt = $conn->prepare("INSERT INTO bookings (user_id, spot_id, district_id, visit_date, visit_time) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("iiiss", $user_id, $spot_id, $district_id, $date, $time);
 
         if ($stmt->execute()) {
-            // ✅ Booking successful
             $success_message = "Your booking has been confirmed! You will receive updates via email.";
         } else {
             $error_message = "Something went wrong. Please try again.";
@@ -54,10 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
-
-
-
 // Fetch tourist spot
 $stmt = $conn->prepare("SELECT * FROM tourist_spots WHERE id = ?");
 $stmt->bind_param("i", $spot_id);
@@ -65,9 +54,21 @@ $stmt->execute();
 $spot = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-// Fetch emergency services for same district
+// Fetch emergency services
 $district_id = $spot['district_id'];
 $eservices = $conn->query("SELECT * FROM emergency_services WHERE district_id = $district_id")->fetch_all(MYSQLI_ASSOC);
+
+// Fetch guides: first for the spot, then from the district
+$guides = [];
+$guideQuery = $conn->prepare("
+    SELECT * FROM guides 
+    WHERE status = 'Approved' AND (spot_id = ? OR district_id = ?)
+    ORDER BY (spot_id = ?) DESC, created_at DESC
+");
+$guideQuery->bind_param("iii", $spot_id, $district_id, $spot_id);
+$guideQuery->execute();
+$guides = $guideQuery->get_result()->fetch_all(MYSQLI_ASSOC);
+$guideQuery->close();
 ?>
 
 <body>
@@ -145,11 +146,11 @@ $eservices = $conn->query("SELECT * FROM emergency_services WHERE district_id = 
                     <h3>Plan Your Visit</h3>
                     <form action="" method="POST">
                         <?php if (!empty($success_message)): ?>
-    <div class="alert alert-success"><?php echo $success_message; ?></div>
-<?php endif; ?>
-<?php if (!empty($error_message)): ?>
-    <div class="alert alert-danger"><?php echo $error_message; ?></div>
-<?php endif; ?>
+                            <div class="alert alert-success"><?php echo $success_message; ?></div>
+                        <?php endif; ?>
+                        <?php if (!empty($error_message)): ?>
+                            <div class="alert alert-danger"><?php echo $error_message; ?></div>
+                        <?php endif; ?>
 
                         <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
                         <input type="hidden" name="spot_id" value="<?php echo $spot['id']; ?>">
@@ -166,30 +167,29 @@ $eservices = $conn->query("SELECT * FROM emergency_services WHERE district_id = 
                 </div>
 
                 <!-- Guides List -->
-<div class="news_details_right_item">
-    <h3>Available Guides</h3>
-    <div class="overflow-auto" style="max-height: 300px; padding-right: 5px;">
-        <?php 
-        $guides = [
-            ["name"=>"Ramesh","img"=>"assets/img/tour-guides/g1.jpg","link"=>"#"],
-            ["name"=>"Anil","img"=>"assets/img/tour-guides/g2.jpg","link"=>"#"],
-            ["name"=>"Suresh","img"=>"assets/img/tour-guides/g3.jpg","link"=>"#"],
-            ["name"=>"Ramesh","img"=>"assets/img/tour-guides/g1.jpg","link"=>"#"],
-            ["name"=>"Anil","img"=>"assets/img/tour-guides/g2.jpg","link"=>"#"]
-        ];
-        foreach($guides as $g){
-            echo '
-            <div class="card mb-2 shadow-sm" style="border:1px solid #ddd;">
-                <div class="d-flex align-items-center p-2">
-                    <img src="'.$g['img'].'" style="width:50px; height:50px; object-fit:cover; border-radius:50%;" alt="'.$g['name'].'">
-                    <h6 class="ms-3 mb-0">'.$g['name'].'</h6>
+                <div class="news_details_right_item">
+                    <h3>Available Guides</h3>
+                    <div class="overflow-auto" style="max-height: 400px; padding-right: 5px;">
+                        <?php if (!empty($guides)): ?>
+                            <?php foreach($guides as $g){ ?>
+                                <div class="card mb-3 shadow-sm" style="border:1px solid #ddd;">
+                                    <div class="d-flex align-items-center p-2">
+                                        <img src="<?php echo !empty($g['image']) ? '../GUIDE/uploads/guides/'.$g['image'] : 'assets/default_guide.png'; ?>" 
+                                             style="width:60px; height:60px; object-fit:cover; border-radius:50%;" 
+                                             alt="<?php echo $g['first_name'].' '.$g['last_name']; ?>">
+                                        <div class="ms-3 flex-grow-1">
+                                            <h6 class="mb-1"><?php echo $g['first_name'].' '.$g['last_name']; ?></h6>
+                                            <small class="text-muted"><?php echo $g['email']; ?><br><?php echo $g['mobile']; ?></small>
+                                        </div>
+                                        <a href="mailto:<?php echo $g['email']; ?>" class="btn btn-success btn-sm">Contact</a>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php else: ?>
+                            <p class="text-muted">No guides available for this spot/district.</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>';
-        }
-        ?>
-    </div>
-</div>
-
 
             </div>
         </div>

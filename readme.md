@@ -8,6 +8,8 @@ http://localhost/Kerala-Tourism/ADMIN/index.php
 
 http://localhost/Kerala-Tourism/HOME/index.php
 
+http://localhost/Kerala-Tourism/GUIDE/login.php
+
 ---
 
 ## 📂 Project Structure
