@@ -30,6 +30,9 @@
                 <li><a href="manageemergency.php">⚙ Manage</a></li>
             </ul>
         </li>
+        
+        <li title="weather report"><a href="sendEmail.php"><i class="fa fa-users"></i><span class="label">weather report</span></a></li>
+
         <li title="Tourist Spots">
             <a href="#touristSubmenu" class="submenu-toggle">
                 <i class="fa fa-map-marker"></i>
