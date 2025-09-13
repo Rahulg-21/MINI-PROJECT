@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Insert booking
-    $stmt = $conn->prepare("INSERT INTO guide_bookings (user_id, guide_id, spot_id, booking_date, booking_time) 
-                            VALUES (?, ?, ?, ?, ?)");
+    // Insert booking with status = 'Pending'
+    $stmt = $conn->prepare("INSERT INTO guide_bookings (user_id, guide_id, spot_id, booking_date, booking_time, status) 
+                            VALUES (?, ?, ?, ?, ?, 'Pending')");
     $stmt->bind_param("iiiss", $user_id, $guide_id, $spot_id, $date, $time);
 
     if ($stmt->execute()) {

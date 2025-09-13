@@ -13,7 +13,7 @@
         </li>
 
         <li title="View Bookings">
-            <a href="view_guide_bookings.php"><span class="label">View Bookings</span></a>
+            <a href="viewBooking.php"><span class="label">View Bookings</span></a>
         </li>
 
         <li title="Logout">

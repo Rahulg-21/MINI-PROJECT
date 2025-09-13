@@ -5,6 +5,6 @@ session_start();
 unset($_SESSION['guide_id']);
 
 // Redirect to login page
-header("Location: ../HOME/index.php");
+header("Location: index.php");
 exit();
 ?>
