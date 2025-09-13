@@ -86,7 +86,7 @@ if (isset($_POST['send_email'])) {
     }
 
     // Build email body with actual weather
-    $subject = "🌦️ Weather Update for Your Trip to $spot";
+    $subject = " Weather Update for Your Trip to $spot";
     $message = "Hello,\n\nHere is your weather update for your upcoming trip:\n
 Spot: $spot\nDistrict: $district\nDate: $date\nTime: $time\n
 Weather: $weather_report\n\nKerala Tourism Team";
@@ -102,8 +102,8 @@ Weather: $weather_report\n\nKerala Tourism Team";
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';  // 🔹 Gmail SMTP
         $mail->SMTPAuth = true;
-        $mail->Username = 'sreesabareesam8055@gmail.com'; // 🔹 Replace
-        $mail->Password = 'oxipoqblsligftyt';   // 🔹 Use Gmail App Password
+        $mail->Username = 'smartkeralatourism@gmail.com'; // 🔹 Replace
+        $mail->Password = 'tycmhgsgutyrpvwx';   // 🔹 Use Gmail App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 

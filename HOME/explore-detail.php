@@ -85,7 +85,10 @@ $guideQuery->close();
                 <div class="news_detail_wrapper">
                     <div class="news_details_content_area">
                         <img src="../ADMIN/uploads/tourist_spots/<?php echo $spot['image']; ?>" 
-                             alt="<?php echo $spot['name']; ?>" class="img-fluid mb-3">
+     alt="<?php echo $spot['name']; ?>" 
+     class="img-fluid mb-3" 
+     style="max-height:400px; width:100%; object-fit:cover; border-radius:10px;">
+
                         <h2><?php echo $spot['name']; ?></h2>
                         <p><?php echo $spot['description']; ?></p>
                     </div>
@@ -167,29 +170,34 @@ $guideQuery->close();
                 </div>
 
                 <!-- Guides List -->
-                <div class="news_details_right_item">
-                    <h3>Available Guides</h3>
-                    <div class="overflow-auto" style="max-height: 400px; padding-right: 5px;">
-                        <?php if (!empty($guides)): ?>
-                            <?php foreach($guides as $g){ ?>
-                                <div class="card mb-3 shadow-sm" style="border:1px solid #ddd;">
-                                    <div class="d-flex align-items-center p-2">
-                                        <img src="<?php echo !empty($g['image']) ? '../GUIDE/uploads/guides/'.$g['image'] : 'assets/default_guide.png'; ?>" 
-                                             style="width:60px; height:60px; object-fit:cover; border-radius:50%;" 
-                                             alt="<?php echo $g['first_name'].' '.$g['last_name']; ?>">
-                                        <div class="ms-3 flex-grow-1">
-                                            <h6 class="mb-1"><?php echo $g['first_name'].' '.$g['last_name']; ?></h6>
-                                            <small class="text-muted"><?php echo $g['email']; ?><br><?php echo $g['mobile']; ?></small>
-                                        </div>
-                                        <a href="mailto:<?php echo $g['email']; ?>" class="btn btn-success btn-sm">Contact</a>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        <?php else: ?>
-                            <p class="text-muted">No guides available for this spot/district.</p>
-                        <?php endif; ?>
+              <div class="news_details_right_item">
+    <h3>Available Guides</h3>
+    <div class="overflow-auto" style="max-height: 400px; padding-right: 5px;">
+        <?php if (!empty($guides)): ?>
+            <?php foreach($guides as $g){ ?>
+                <div class="card mb-3 shadow-sm" style="border:1px solid #ddd;">
+                    <div class="d-flex align-items-center p-2">
+                        <img src="<?php echo !empty($g['image']) ? '../GUIDE/uploads/guides/'.$g['image'] : 'assets/default_guide.png'; ?>" 
+                             style="width:60px; height:60px; object-fit:cover; border-radius:50%;" 
+                             alt="<?php echo $g['first_name'].' '.$g['last_name']; ?>">
+                        <div class="ms-3 flex-grow-1">
+                            <h6 class="mb-1"><?php echo $g['first_name'].' '.$g['last_name']; ?></h6>
+                            <small class="text-muted">
+                                <?php echo $g['email']; ?><br>
+                                <?php echo $g['mobile']; ?>
+                            </small>
+                        </div>
+                        <!-- Contact now leads to details page -->
+                        <a href="guide_details.php?id=<?php echo $g['id']; ?>" class="btn btn-success btn-sm">Contact</a>
                     </div>
                 </div>
+            <?php } ?>
+        <?php else: ?>
+            <p class="text-muted">No guides available for this spot/district.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
 
             </div>
         </div>
