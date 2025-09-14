@@ -69,6 +69,18 @@ $guideQuery->bind_param("iii", $spot_id, $district_id, $spot_id);
 $guideQuery->execute();
 $guides = $guideQuery->get_result()->fetch_all(MYSQLI_ASSOC);
 $guideQuery->close();
+
+// Fetch hotels for this spot first, then for the district
+$hotels = [];
+$hotelQuery = $conn->prepare("
+    SELECT * FROM hotels 
+    WHERE status='Approved' AND (spot_id = ? OR district_id = ?)
+    ORDER BY (spot_id = ?) DESC, created_at DESC
+");
+$hotelQuery->bind_param("iii", $spot_id, $district_id, $spot_id);
+$hotelQuery->execute();
+$hotels = $hotelQuery->get_result()->fetch_all(MYSQLI_ASSOC);
+$hotelQuery->close();
 ?>
 
 <body>
@@ -167,30 +179,27 @@ $guideQuery->close();
 
 </div>
 
-                <!-- Horizontal Hotel Cards -->
+<!-- Horizontal Hotel Cards -->
 <h3 class="mb-3 text-center fw-bold">Nearby Hotels</h3>
 <div class="d-flex overflow-auto pb-3" style="gap:15px;">
-    <?php 
-    $hotels = [
-        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
-        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
-        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
-        ["name"=>"Hill View","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
-        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
-        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
-        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"]
-    ];
-    foreach($hotels as $h){
-        echo '
-        <div class="card" style="min-width:200px;">
-            <img src="'.$h['img'].'" class="card-img-top" alt="'.$h['name'].'" style="height:150px; object-fit:cover; width:100%;">
-            <div class="card-body">
-                <h6 class="card-title">'.$h['name'].'</h6>
-                <a href="'.$h['link'].'" class="btn btn-success btn-sm">View</a>
+    <?php if (!empty($hotels)): ?>
+        <?php foreach($hotels as $h): ?>
+            <div class="card" style="min-width:200px;">
+                <img src="<?php echo !empty($h['image']) 
+                                ? '../HOTEL/uploads/hotels/'.$h['image'] 
+                                : 'assets/img/hotel/default_hotel.png'; ?>" 
+                     class="card-img-top" 
+                     alt="<?php echo htmlspecialchars($h['name']); ?>" 
+                     style="height:150px; object-fit:cover; width:100%;">
+                <div class="card-body">
+                    <h6 class="card-title"><?php echo htmlspecialchars($h['name']); ?></h6>
+                    <a href="hotel_details.php?id=<?php echo $h['id']; ?>" class="btn btn-success btn-sm">View</a>
+                </div>
             </div>
-        </div>';
-    }
-    ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="text-muted">No hotels available for this spot/district.</p>
+    <?php endif; ?>
 </div>
 
 

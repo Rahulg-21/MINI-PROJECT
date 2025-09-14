@@ -3,44 +3,59 @@ session_start();
 include 'components/head.php'; 
 include '../CONFIG/config.php'; // DB connection
 
-// ✅ Only allow logged-in guide
-if(!isset($_SESSION['guide_id'])){
+// ✅ Only allow logged-in hotel
+if(!isset($_SESSION['hotel_id'])){
     header("Location: login.php");
     exit;
 }
 
-$guide_id = $_SESSION['guide_id'];
+$hotel_id = $_SESSION['hotel_id'];
 
-// Fetch guide details
-$stmt = $conn->prepare("SELECT g.*, d.name AS district_name, t.name AS spot_name 
-                        FROM guides g
-                        LEFT JOIN districts d ON g.district_id = d.id
-                        LEFT JOIN tourist_spots t ON g.spot_id = t.id
-                        WHERE g.id=?");
-$stmt->bind_param("i", $guide_id);
+// Fetch hotel details
+$stmt = $conn->prepare("SELECT h.*, d.name AS district_name, t.name AS spot_name 
+                        FROM hotels h
+                        LEFT JOIN districts d ON h.district_id = d.id
+                        LEFT JOIN tourist_spots t ON h.spot_id = t.id
+                        WHERE h.id=?");
+$stmt->bind_param("i", $hotel_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$guide = $result->fetch_assoc();
+$hotel = $result->fetch_assoc();
 
 // Handle update
 if(isset($_POST['update_profile'])){
-    $fname = $_POST['first_name'];
-    $lname = $_POST['last_name'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
     $username = $_POST['username'];
 
-    $update = $conn->prepare("UPDATE guides 
-                              SET first_name=?, last_name=?, email=?, mobile=?, username=? 
-                              WHERE id=?");
-    $update->bind_param("sssssi", $fname, $lname, $email, $mobile, $username, $guide_id);
+    // Optional: file upload
+    $image = $hotel['image']; // default existing image
+    if(!empty($_FILES['image']['name'])){
+        $targetDir = __DIR__ . "/uploads/hotels/";
+        if(!is_dir($targetDir)) mkdir($targetDir, 0777, true);
 
-    if($update->execute()){
-        $_SESSION['success'] = "Profile updated successfully!";
-        header("Location: index.php");
-        exit;
-    } else {
-        $error = "Something went wrong while updating!";
+        $image = time() . "_" . basename($_FILES["image"]["name"]);
+        $targetFile = $targetDir . $image;
+
+        if(!move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)){
+            $error = "❌ File upload failed. Check folder permissions.";
+        }
+    }
+
+    if(!isset($error)){
+        $update = $conn->prepare("UPDATE hotels 
+                                  SET name=?, email=?, mobile=?, username=?, image=? 
+                                  WHERE id=?");
+        $update->bind_param("sssssi", $name, $email, $mobile, $username, $image, $hotel_id);
+
+        if($update->execute()){
+            $_SESSION['success'] = "Profile updated successfully!";
+            header("Location: index.php");
+            exit;
+        } else {
+            $error = "Something went wrong while updating!";
+        }
     }
 }
 ?>
@@ -51,10 +66,10 @@ if(isset($_POST['update_profile'])){
 <div class="content">
     <div class="pt-4"></div>
 
-    <!-- Guide Dashboard -->
+    <!-- Hotel Dashboard -->
     <div class="container my-4">
         <div class="card shadow-sm p-4">
-            <h4 class="mb-3">👨‍💼 Guide Dashboard</h4>
+            <h4 class="mb-3">🏨 Hotel Dashboard</h4>
             <?php if(isset($_SESSION['success'])): ?>
                 <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
             <?php endif; ?>
@@ -65,20 +80,20 @@ if(isset($_POST['update_profile'])){
             <!-- Profile Details -->
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <img src="<?php echo !empty($guide['image']) 
-        ? '../GUIDE/uploads/guides/' . htmlspecialchars($guide['image']) 
-        : 'assets/default_guide.png'; ?>" 
-     width="80" height="60" style="object-fit:cover;">
+                    <img src="<?php echo !empty($hotel['image']) 
+                        ? 'uploads/hotels/' . htmlspecialchars($hotel['image']) 
+                        : 'assets/default_hotel.png'; ?>" 
+                     width="150" height="120" style="object-fit:cover;">
 
-                    <p class="fw-bold text-success">Status: <?php echo $guide['status']; ?></p>
+                    <p class="fw-bold text-success">Status: <?php echo $hotel['status']; ?></p>
                 </div>
                 <div class="col-md-8">
-                    <p><strong>Name:</strong> <?php echo $guide['first_name'].' '.$guide['last_name']; ?></p>
-                    <p><strong>Email:</strong> <?php echo $guide['email']; ?></p>
-                    <p><strong>Mobile:</strong> <?php echo $guide['mobile']; ?></p>
-                    <p><strong>Username:</strong> <?php echo $guide['username']; ?></p>
-                    <p><strong>District:</strong> <?php echo $guide['district_name']; ?></p>
-                    <p><strong>Tourist Spot:</strong> <?php echo $guide['spot_name']; ?></p>
+                    <p><strong>Hotel Name:</strong> <?php echo $hotel['name']; ?></p>
+                    <p><strong>Email:</strong> <?php echo $hotel['email']; ?></p>
+                    <p><strong>Mobile:</strong> <?php echo $hotel['mobile']; ?></p>
+                    <p><strong>Username:</strong> <?php echo $hotel['username']; ?></p>
+                    <p><strong>District:</strong> <?php echo $hotel['district_name']; ?></p>
+                    <p><strong>Nearby Spot:</strong> <?php echo $hotel['spot_name']; ?></p>
                 </div>
             </div>
             
@@ -93,31 +108,31 @@ if(isset($_POST['update_profile'])){
     <div class="modal fade" id="updateModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="modal-header bg-success text-white">
                     <h5 class="modal-title">Update Profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" class="form-control" value="<?php echo $guide['first_name']; ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" class="form-control" value="<?php echo $guide['last_name']; ?>" required>
+                        <label>Hotel Name</label>
+                        <input type="text" name="name" class="form-control" value="<?php echo $hotel['name']; ?>" required>
                     </div>
                     <div class="mb-3">
                         <label>Email</label>
-                        <input type="email" name="email" class="form-control" value="<?php echo $guide['email']; ?>" required>
+                        <input type="email" name="email" class="form-control" value="<?php echo $hotel['email']; ?>" required>
                     </div>
                     <div class="mb-3">
                         <label>Mobile</label>
-                        <input type="text" name="mobile" class="form-control" value="<?php echo $guide['mobile']; ?>" required>
+                        <input type="text" name="mobile" class="form-control" value="<?php echo $hotel['mobile']; ?>" required>
                     </div>
                     <div class="mb-3">
                         <label>Username</label>
-                        <input type="text" name="username" class="form-control" value="<?php echo $guide['username']; ?>" required>
+                        <input type="text" name="username" class="form-control" value="<?php echo $hotel['username']; ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Hotel Image</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -130,7 +145,7 @@ if(isset($_POST['update_profile'])){
 
     <!-- Footer -->
     <div class="copyrights mt-4 text-center py-2 bg-light">
-        <p class="mb-0">Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
+        <p class="mb-0">Kerala Tourism Hotels. All Rights Reserved.</p>
     </div>
 </div>
 

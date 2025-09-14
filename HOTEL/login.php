@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif (password_verify($password, $hashed_password)) {
             // Login success
             $_SESSION['hotel_id'] = $id;
-            $_SESSION['hotel_name'] = $hotel_name;
-            header("Location: dashboard.php"); // Redirect to hotel dashboard
+            //$_SESSION['hotel_name'] = $hotel_name;
+            header("Location: index.php"); // Redirect to hotel dashboard
             exit;
         } else {
             $message = "Invalid username or password!";
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           <div class="text-center mt-3">
             <p class="mb-0">Don't have an account? 
-              <a href="hotel_register.php" class="fw-bold text-success">Register Now</a>
+              <a href="register.php" class="fw-bold text-success">Register Now</a>
             </p>
           </div>
         </div>

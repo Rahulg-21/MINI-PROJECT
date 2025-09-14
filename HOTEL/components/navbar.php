@@ -2,22 +2,31 @@
 <div class="sidebar bg-success" id="sidebar">
     <!-- Sidebar Title -->
     <div class="sidebar-title">
-        <h4>Guide Dashboard</h4>
+        <h4>Hotel Dashboard</h4>
     </div>
     <ul>
-        <li title="HOME">
-            <a href="../HOME/index.php"><span class="label">HOME</span></a>
-        </li>
         <li title="Profile">
-            <a href="index.php"><span class="label">Profile</span></a>
+            <a href="index.php"><i class="bi bi-person-circle"></i> <span class="label">Profile</span></a>
+        </li>
+
+        <li title="Add Room">
+            <a href="addRoom.php"><i class="bi bi-plus-square"></i> <span class="label">Add Room</span></a>
+        </li>
+
+        <li title="Manage Room">
+            <a href="manageRooms.php"><i class="bi bi-grid-3x3-gap"></i> <span class="label">Manage Room</span></a>
         </li>
 
         <li title="View Bookings">
-            <a href="viewBooking.php"><span class="label">View Bookings</span></a>
+            <a href="viewBookings.php"><i class="bi bi-card-checklist"></i> <span class="label">View Bookings</span></a>
+        </li>
+
+        <li title="Accept Booking">
+            <a href="acceptBooking.php"><i class="bi bi-check-circle"></i> <span class="label">Accept Booking</span></a>
         </li>
 
         <li title="Logout">
-            <a href="logout.php"><span class="label">Logout</span></a>
+            <a href="logout.php"><i class="bi bi-box-arrow-right"></i> <span class="label">Logout</span></a>
         </li>
     </ul>
 </div>

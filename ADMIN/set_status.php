@@ -9,7 +9,7 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
     $stmt->bind_param("si", $status, $id);
 
     if ($stmt->execute()) {
-        header("Location: pending_spots.php?msg=status_updated");
+        header("Location:managespot.php?msg=status_updated");
         exit;
     } else {
         die("Error updating status: " . $stmt->error);
