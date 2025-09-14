@@ -1,7 +1,10 @@
 <?php
 include '../CONFIG/config.php';
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+// Ensure guide is logged in
 if (!isset($_SESSION['guide_id'])) {
     die("Unauthorized access.");
 }
@@ -13,10 +16,16 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
 
     if (in_array($status, $allowed)) {
         $stmt = $conn->prepare("UPDATE guide_bookings SET status = ? WHERE id = ? AND guide_id = ?");
-        $stmt->bind_param("sii", $status, $id, $_SESSION['guide_id']);
-        $stmt->execute();
+        if ($stmt) {
+            $stmt->bind_param("sii", $status, $id, $_SESSION['guide_id']);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            die("Query preparation failed: " . $conn->error);
+        }
     }
 }
 
+// Redirect back to viewBooking page
 header("Location: viewBooking.php");
 exit;

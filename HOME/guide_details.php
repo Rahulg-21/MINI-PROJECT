@@ -67,23 +67,29 @@ $stmt->close();
             <?php endif; ?>
 
             <!-- Booking Form -->
-            <h5 class="mb-3">📅 Book This Guide</h5>
-            <form method="post" action="book_guide.php" class="row g-3">
-                <input type="hidden" name="guide_id" value="<?php echo $guide['id']; ?>">
-                <input type="hidden" name="spot_id" value="<?php echo $guide['spot_id']; ?>">
+           <!-- Booking Form -->
+<h5 class="mb-3">📅 Book This Guide</h5>
+<form method="post" action="book_guide.php" class="row g-3">
+    <input type="hidden" name="guide_id" value="<?php echo $guide['id']; ?>">
 
-                <div class="col-md-6">
-                    <label class="form-label">Select Date</label>
-                    <input type="date" name="booking_date" class="form-control" required>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Select Time</label>
-                    <input type="time" name="booking_time" class="form-control" required>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
-                </div>
-            </form>
+    <div class="col-12">
+        <label class="form-label">Describe Your Trip / Spot</label>
+         <input type="text" name="description" class="form-control" placeholder="Enter spot or description" required>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Select Date</label>
+        <input type="date" name="booking_date" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Select Time</label>
+        <input type="time" name="booking_time" class="form-control" required>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
+    </div>
+</form>
+
         </div>
     <?php else: ?>
         <p class="text-danger">❌ Guide not found.</p>

@@ -17,16 +17,14 @@
         </li>
 
         <li title="Guide Bookings">
-            <a href="view_guide_bookings.php"><span class="label">View Guide Bookings</span></a>
+            <a href="viewGuide.php"><span class="label">View Guide Bookings</span></a>
         </li>
 
         <li title="Place Bookings">
             <a href="viewBooking.php"><span class="label">Place Bookings</span></a>
         </li>
  
-         <li title="Guide Bookings">
-            <a href="viewGuide.php"><span class="label">Guide Bookings</span></a>
-        </li>
+       
        
           <li title="Add Tourist Spot">
             <a href="addTourist.php"><span class="label">Add Tourist Spot</span></a>

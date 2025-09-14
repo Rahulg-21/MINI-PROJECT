@@ -13,12 +13,9 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // ✅ Fetch user's guide bookings
-$stmt = $conn->prepare("SELECT gb.*, g.first_name, g.last_name, g.mobile, g.email, 
-                               s.name AS spot_name, d.name AS district_name
+$stmt = $conn->prepare("SELECT gb.*, g.first_name, g.last_name, g.mobile, g.email
                         FROM guide_bookings gb
                         JOIN guides g ON gb.guide_id = g.id
-                        LEFT JOIN tourist_spots s ON gb.spot_id = s.id
-                        LEFT JOIN districts d ON s.district_id = d.id
                         WHERE gb.user_id = ?
                         ORDER BY gb.created_at DESC");
 $stmt->bind_param("i", $user_id);
@@ -54,8 +51,7 @@ $result = $stmt->get_result();
                 <tr>
                     <th>ID</th>
                     <th>Guide</th>
-                    <th>District</th>
-                    <th>Spot</th>
+                    <th>Description</th>
                     <th>Booking Date</th>
                     <th>Booking Time</th>
                     <th>Status</th>
@@ -72,8 +68,7 @@ $result = $stmt->get_result();
                             📧 <?= htmlspecialchars($row['email']) ?><br>
                             📞 <?= htmlspecialchars($row['mobile']) ?>
                         </td>
-                        <td><?= htmlspecialchars($row['district_name'] ?? '-') ?></td>
-                        <td><?= htmlspecialchars($row['spot_name'] ?? '-') ?></td>
+                        <td><?= htmlspecialchars($row['description'] ?? '-') ?></td>
                         <td><?= htmlspecialchars($row['booking_date']) ?></td>
                         <td><?= htmlspecialchars($row['booking_time']) ?></td>
                         <td>
@@ -89,7 +84,7 @@ $result = $stmt->get_result();
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
-                <tr><td colspan="8" class="text-center">No guide bookings found.</td></tr>
+                <tr><td colspan="7" class="text-center">No guide bookings found.</td></tr>
             <?php endif; ?>
             </tbody>
         </table>

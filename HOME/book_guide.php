@@ -10,7 +10,7 @@ include '../CONFIG/config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'];
     $guide_id = intval($_POST['guide_id']);
-    $spot_id = intval($_POST['spot_id']);
+    $description = trim($_POST['description']); // user input instead of spot_id
     $date = $_POST['booking_date'];
     $time = $_POST['booking_time'];
 
@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Insert booking with status = 'Pending'
-    $stmt = $conn->prepare("INSERT INTO guide_bookings (user_id, guide_id, spot_id, booking_date, booking_time, status) 
+    // Insert booking with description (instead of spot_id) and status = 'Pending'
+    $stmt = $conn->prepare("INSERT INTO guide_bookings (user_id, guide_id, description, booking_date, booking_time, status) 
                             VALUES (?, ?, ?, ?, ?, 'Pending')");
-    $stmt->bind_param("iiiss", $user_id, $guide_id, $spot_id, $date, $time);
+    $stmt->bind_param("iisss", $user_id, $guide_id, $description, $date, $time);
 
     if ($stmt->execute()) {
         echo "<script>alert('✅ Guide booked successfully!'); window.location='guide_details.php?id=$guide_id';</script>";

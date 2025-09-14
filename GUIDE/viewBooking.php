@@ -5,18 +5,15 @@ include '../CONFIG/config.php';
 include 'components/head.php';
 include 'components/navbar.php';
 
-
 if (!isset($_SESSION['guide_id'])) {
     die("Unauthorized access. Please login as guide.");
 }
 $guide_id = $_SESSION['guide_id'];
 
 // Fetch guide bookings
-$query = "SELECT gb.*, u.username AS user_name, ts.name AS spot_name, d.name AS district_name
+$query = "SELECT gb.*, u.username AS user_name
           FROM guide_bookings gb
           JOIN users u ON gb.user_id = u.id
-          LEFT JOIN tourist_spots ts ON gb.spot_id = ts.id
-          LEFT JOIN districts d ON ts.district_id = d.id
           WHERE gb.guide_id = ?
           ORDER BY gb.id DESC";
 
@@ -55,8 +52,7 @@ $result = $stmt->get_result();
                 <tr>
                     <th>ID</th>
                     <th>User</th>
-                    <th>Tourist Spot</th>
-                    <th>District</th>
+                    <th>Description</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Status</th>
@@ -69,8 +65,7 @@ $result = $stmt->get_result();
                     <tr>
                         <td><?= $row['id'] ?></td>
                         <td><?= htmlspecialchars($row['user_name']) ?></td>
-                        <td><?= htmlspecialchars($row['spot_name'] ?? 'N/A') ?></td>
-                        <td><?= htmlspecialchars($row['district_name'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars($row['description'] ?? 'N/A') ?></td>
                         <td><?= htmlspecialchars($row['booking_date']) ?></td>
                         <td><?= htmlspecialchars($row['booking_time']) ?></td>
                         <td>
@@ -101,7 +96,7 @@ $result = $stmt->get_result();
                     </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <tr><td colspan="8" class="text-center">No bookings found.</td></tr>
+                    <tr><td colspan="7" class="text-center">No bookings found.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
