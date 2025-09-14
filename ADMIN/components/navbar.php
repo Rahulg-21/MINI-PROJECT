@@ -30,6 +30,17 @@
                 <li><a href="manageemergency.php">⚙ Manage</a></li>
             </ul>
         </li>
+        <li title="Hotels">
+            <a href="#touristSubmenu" class="submenu-toggle">
+                <i class="fa fa-map-marker"></i>
+                <span class="label">Hotels</span>
+                <i class="fa fa-angle-down ms-auto"></i>
+            </a>
+            <ul class="collapse" id="touristSubmenu">
+                <li><a href="approveHotel.php">➕ Approve</a></li>
+                <li><a href="manageHotel.php">⚙ Manage</a></li>
+            </ul>
+        </li>
         
         <li title="weather report"><a href="sendEmail.php"><i class="fa fa-users"></i><span class="label">weather report</span></a></li>
 
