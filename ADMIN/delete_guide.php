@@ -10,5 +10,5 @@ if (isset($_GET['id'])) {
     $stmt->execute();
 }
 
-header("Location: pending_guides.php");
+header("Location: manageGuide.php");
 exit;
