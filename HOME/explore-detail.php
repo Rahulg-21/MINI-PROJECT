@@ -76,6 +76,14 @@ $guideQuery->close();
 <header class="main_header_arae"></header>
 <?php include 'components/navbar.php'; ?>
 
+<style> 
+.card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+</style>
+
 <br><br><br>
 <section id="news_details_main_arae" class="section_padding">
     <div class="container">
@@ -98,10 +106,11 @@ $guideQuery->close();
                <!-- Booking Form & Guides -->
 <div class="row mb-5">
     <!-- Booking Form -->
-    <div class="col-lg-6 mb-3 d-flex">
-        <div class="card p-3 flex-fill h-100">
-            <h3>Plan Your Visit</h3>
-            <form action="" method="POST" class="d-flex flex-column h-100">
+    <div class="col-lg-6 col-12 mb-3 d-flex">
+        <div class="card p-3 flex-fill h-100 shadow-sm rounded">
+           <h3 class="text-center fw-bold">Plan Your Visit</h3>
+
+            <form action="" method="POST" class="d-flex flex-column pt-5 h-100">
                 <?php if (!empty($success_message)): ?>
                     <div class="alert alert-success"><?php echo $success_message; ?></div>
                 <?php endif; ?>
@@ -129,8 +138,8 @@ $guideQuery->close();
    <!-- Guides List -->
 <div class="col-lg-6 mb-3 d-flex">
     <div class="card p-3 flex-fill h-100">
-        <h3>Available Guides</h3>
-        <div class="overflow-auto" style="max-height:400px;">
+        <h3 class="text-center fw-bold">Available Guides</h3>
+        <div class="overflow-auto pt-5" style="max-height:400px;">
             <?php if (!empty($guides)): ?>
                 <?php foreach($guides as $g){ ?>
                     <div class="card mb-3 shadow-sm" style="border:1px solid #ddd;">
@@ -159,33 +168,34 @@ $guideQuery->close();
 </div>
 
                 <!-- Horizontal Hotel Cards -->
-                <h3 class="mb-3">Nearby Hotels</h3>
-                <div class="d-flex overflow-auto pb-3" style="gap:15px;">
-                    <?php 
-                    $hotels = [
-                        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
-                        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
-                        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
-                        ["name"=>"Hill View","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
-                        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
-                        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
-                        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"]
-                    ];
-                    foreach($hotels as $h){
-                        echo '
-                        <div class="card" style="min-width:200px;">
-                            <img src="'.$h['img'].'" class="card-img-top" alt="'.$h['name'].'">
-                            <div class="card-body">
-                                <h6 class="card-title">'.$h['name'].'</h6>
-                                <a href="'.$h['link'].'" class="btn btn-success btn-sm">View</a>
-                            </div>
-                        </div>';
-                    }
-                    ?>
-                </div>
+<h3 class="mb-3 text-center fw-bold">Nearby Hotels</h3>
+<div class="d-flex overflow-auto pb-3" style="gap:15px;">
+    <?php 
+    $hotels = [
+        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
+        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
+        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
+        ["name"=>"Hill View","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"],
+        ["name"=>"Hotel Elite","img"=>"assets/img/hotel/hotel-2.jpg","link"=>"#"],
+        ["name"=>"Grand Palace","img"=>"assets/img/hotel/hotel-3.jpg","link"=>"#"],
+        ["name"=>"Sea Breeze","img"=>"assets/img/hotel/hotel-1.jpg","link"=>"#"]
+    ];
+    foreach($hotels as $h){
+        echo '
+        <div class="card" style="min-width:200px;">
+            <img src="'.$h['img'].'" class="card-img-top" alt="'.$h['name'].'" style="height:150px; object-fit:cover; width:100%;">
+            <div class="card-body">
+                <h6 class="card-title">'.$h['name'].'</h6>
+                <a href="'.$h['link'].'" class="btn btn-success btn-sm">View</a>
+            </div>
+        </div>';
+    }
+    ?>
+</div>
+
 
                 <!-- Emergency Services - Horizontal Scroll -->
-                <h3 class="mt-5 mb-3">Emergency Services</h3>
+                <h3 class="mt-5 mb-3 text-center fw-bold">Emergency Services</h3>
                 <div class="d-flex overflow-auto pb-3" style="gap:15px;">
                     <?php foreach($eservices as $e){ ?>
                         <div class="card h-100" style="min-width:300px;">
