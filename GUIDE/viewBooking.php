@@ -21,6 +21,8 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $guide_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
+
 ?>
 
 <style>

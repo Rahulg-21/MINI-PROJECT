@@ -9,7 +9,7 @@
             <a href="../HOME/index.php"><span class="label">HOME</span></a>
         </li>
         <li title="Dashboard">
-            <a href="index.php"><span class="label">Dashboard</span></a>
+            <a href="index.php"><span class="label">Profile</span></a>
         </li>
 
         <li title="Hotel Bookings">

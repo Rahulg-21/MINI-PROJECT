@@ -18,7 +18,7 @@ if (isset($_GET['delete'])) {
     $stmt = $conn->prepare("DELETE FROM hotel_bookings WHERE id=? AND hotel_id=?");
     $stmt->bind_param("ii", $booking_id, $hotel_id);
     if ($stmt->execute()) {
-        echo "<script>alert('Booking deleted successfully'); window.location='viewConfirmedBookings.php';</script>";
+        echo "<script>alert('Booking deleted successfully'); window.location='viewBookings.php';</script>";
     } else {
         echo "<script>alert('Error deleting booking');</script>";
     }

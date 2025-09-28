@@ -58,6 +58,28 @@ if(isset($_POST['update_profile'])){
         }
     }
 }
+
+// Fetch monthly booking counts
+$chartStmt = $conn->prepare("
+    SELECT DATE_FORMAT(hb.created_at, '%Y-%m') AS month, COUNT(*) AS total_bookings
+    FROM hotel_bookings hb
+    JOIN hotel_rooms hr ON hb.room_id = hr.id
+    JOIN users u ON hb.user_id = u.id
+    WHERE hb.hotel_id=? AND hb.status='Confirmed'
+    GROUP BY DATE_FORMAT(hb.created_at, '%Y-%m')
+    ORDER BY month ASC
+");
+$chartStmt->bind_param("i", $hotel_id);
+$chartStmt->execute();
+$chartResult = $chartStmt->get_result();
+
+$months = [];
+$bookings = [];
+while($row = $chartResult->fetch_assoc()){
+    $months[] = $row['month'];
+    $bookings[] = (int)$row['total_bookings'];
+}
+
 ?>
 
 <body>
@@ -66,43 +88,51 @@ if(isset($_POST['update_profile'])){
 <div class="content">
     <div class="pt-4"></div>
 
-    <!-- Hotel Dashboard -->
-    <div class="container my-4">
-        <div class="card shadow-sm p-4">
-            <h4 class="mb-3">🏨 Hotel Dashboard</h4>
-            <?php if(isset($_SESSION['success'])): ?>
-                <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
-            <?php endif; ?>
-            <?php if(isset($error)): ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
-            <?php endif; ?>
+ <!-- Hotel Dashboard -->
+<div class="container my-4">
+    <div class="card shadow-sm p-4">
+        <h4 class="mb-3">🏨 Hotel Dashboard</h4>
+        <?php if(isset($_SESSION['success'])): ?>
+            <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
+        <?php endif; ?>
+        <?php if(isset($error)): ?>
+            <div class="alert alert-danger"><?php echo $error; ?></div>
+        <?php endif; ?>
 
-            <!-- Profile Details -->
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <img src="<?php echo !empty($hotel['image']) 
-                        ? 'uploads/hotels/' . htmlspecialchars($hotel['image']) 
-                        : 'assets/default_hotel.png'; ?>" 
-                     width="150" height="120" style="object-fit:cover;">
-
-                    <p class="fw-bold text-success">Status: <?php echo $hotel['status']; ?></p>
-                </div>
-                <div class="col-md-8">
-                    <p><strong>Hotel Name:</strong> <?php echo $hotel['name']; ?></p>
-                    <p><strong>Email:</strong> <?php echo $hotel['email']; ?></p>
-                    <p><strong>Mobile:</strong> <?php echo $hotel['mobile']; ?></p>
-                    <p><strong>Username:</strong> <?php echo $hotel['username']; ?></p>
-                    <p><strong>District:</strong> <?php echo $hotel['district_name']; ?></p>
-                    <p><strong>Nearby Spot:</strong> <?php echo $hotel['spot_name']; ?></p>
-                </div>
+        <!-- Profile Details -->
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="<?php echo !empty($hotel['image']) 
+                    ? 'uploads/hotels/' . htmlspecialchars($hotel['image']) 
+                    : 'assets/default_hotel.png'; ?>" 
+                 width="150" height="120" style="object-fit:cover;">
+                <p class="fw-bold text-success">Status: <?php echo $hotel['status']; ?></p>
             </div>
-            
-            <!-- Update Button -->
-            <div class="mt-3">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal">✏️ Update Profile</button>
+            <div class="col-md-8">
+                <p><strong>Hotel Name:</strong> <?php echo $hotel['name']; ?></p>
+                <p><strong>Email:</strong> <?php echo $hotel['email']; ?></p>
+                <p><strong>Mobile:</strong> <?php echo $hotel['mobile']; ?></p>
+                <p><strong>Username:</strong> <?php echo $hotel['username']; ?></p>
+                <p><strong>District:</strong> <?php echo $hotel['district_name']; ?></p>
+                <p><strong>Nearby Spot:</strong> <?php echo $hotel['spot_name']; ?></p>
             </div>
         </div>
+        
+        <!-- Update Button -->
+        <div class="mt-3">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal">
+                ✏️ Update Profile
+            </button>
+        </div>
     </div>
+
+    <!-- Monthly Bookings Chart (✅ OUTSIDE the modal now) -->
+    <div class="card shadow-sm p-4 mt-4">
+        <h5 class="mb-3">📊 Monthly Booking Statistics</h5>
+        <canvas id="bookingChart" height="120"></canvas>
+    </div>
+</div>
+
 
     <!-- Update Profile Modal -->
     <div class="modal fade" id="updateModal" tabindex="-1">
@@ -138,7 +168,10 @@ if(isset($_POST['update_profile'])){
                 <div class="modal-footer">
                     <button type="submit" name="update_profile" class="btn btn-success">Update</button>
                 </div>
+
             </form>
+
+
         </div>
       </div>
     </div>
@@ -151,5 +184,37 @@ if(isset($_POST['update_profile'])){
 
 <!-- Scripts -->
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('bookingChart').getContext('2d');
+const bookingChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: <?php echo json_encode($months); ?>,
+        datasets: [{
+            label: 'Confirmed Bookings',
+            data: <?php echo json_encode($bookings); ?>,
+            borderColor: 'rgba(46, 125, 50, 1)',
+            backgroundColor: 'rgba(102, 187, 106, 0.2)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true,
+            pointBackgroundColor: 'rgba(46, 125, 50, 1)',
+            pointRadius: 5
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: true },
+            tooltip: { enabled: true }
+        },
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+</script>
+
 </body>
 </html>

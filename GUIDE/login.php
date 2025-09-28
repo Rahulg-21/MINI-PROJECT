@@ -51,7 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'], $_POST['pa
 
 <?php include 'components/head.php'; ?>
 <body>
+<style>   html, body {
+    height: 100%;
+    margin: 0;
+  }
 
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1; /* pushes footer down */
+  }</style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
@@ -62,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'], $_POST['pa
 </nav>
 
 
-<div class="container my-5">
+<main class="container my-5">
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
 
@@ -102,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'], $_POST['pa
 
     </div>
   </div>
-</div>
+  </main>
 
 <footer class="bg-light text-center py-3 mt-5 border-top">
   <div class="container">

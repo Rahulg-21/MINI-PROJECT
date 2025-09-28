@@ -42,12 +42,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php include 'components/head.php'; ?>
 <body>
+<style> 
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1; /* pushes footer down */
+  }
+</style>
+
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold text-success" href="index.php">
-      <i class="bi bi-building"></i> Kerala Tourism Hotels
+      <i class="bi bi-building"></i> Kerala Tourism - Hotels
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -55,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </nav>
 
-<div class="container my-5">
+<main class="container my-5">
   <div class="row justify-content-center">
     <div class="col-lg-5 col-md-7">
       <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
@@ -93,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </div>
-</div>
+  </main>
 
 <!-- Footer -->
 <footer class="bg-light text-center py-3 mt-5 border-top">

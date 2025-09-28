@@ -3,6 +3,11 @@ session_start();
 include 'components/head.php'; 
 include '../CONFIG/config.php'; // DB connection
 
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // ✅ Only allow logged-in guide
 if(!isset($_SESSION['guide_id'])){
     header("Location: login.php");
@@ -43,6 +48,29 @@ if(isset($_POST['update_profile'])){
         $error = "Something went wrong while updating!";
     }
 }
+
+
+
+// ✅ Fetch monthly booking counts for this guide
+$booking_stmt = $conn->prepare("
+    SELECT DATE_FORMAT(gb.booking_date, '%Y-%m') AS month, COUNT(*) AS total 
+    FROM guide_bookings gb
+    WHERE gb.guide_id = ?
+    GROUP BY DATE_FORMAT(gb.booking_date, '%Y-%m')
+    ORDER BY month ASC
+");
+$booking_stmt->bind_param("i", $guide_id);
+$booking_stmt->execute();
+$booking_result = $booking_stmt->get_result();
+
+$months = [];
+$totals = [];
+while($row = $booking_result->fetch_assoc()){
+    $months[] = $row['month'];
+    $totals[] = $row['total'];
+}
+
+
 ?>
 
 <body>
@@ -88,6 +116,14 @@ if(isset($_POST['update_profile'])){
             </div>
         </div>
     </div>
+    <!-- Monthly Booking Chart -->
+<div class="container my-5">
+    <div class="card shadow-sm p-4">
+        <h5 class="mb-3">📊 Monthly Bookings</h5>
+        <canvas id="bookingChart" height="120"></canvas>
+    </div>
+</div>
+
 
     <!-- Update Profile Modal -->
     <div class="modal fade" id="updateModal" tabindex="-1">
@@ -133,6 +169,35 @@ if(isset($_POST['update_profile'])){
         <p class="mb-0">Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('bookingChart').getContext('2d');
+const bookingChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($months); ?>,
+        datasets: [{
+            label: 'Total Bookings',
+            data: <?php echo json_encode($totals); ?>,
+            backgroundColor: 'rgba(25, 135, 84, 0.6)',
+            borderColor: 'rgba(25, 135, 84, 1)',
+            borderWidth: 1,
+            borderRadius: 5
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1 }
+            }
+        }
+    }
+});
+</script>
+
 
 <!-- Scripts -->
 <script src="js/bootstrap.bundle.min.js"></script>

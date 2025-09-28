@@ -1,10 +1,12 @@
-<?php include 'components/head.php'; ?>
-<body>
+<?php 
+include 'components/head.php'; 
+include '../CONFIG/config.php'; 
+?>
 
+<body>
 <?php include 'components/navbar.php'; ?>
 
 <div class="content">
-    <!-- Top padding for fixed navbar -->
     <div class="pt-4"></div>
 
     <!-- Breadcrumb -->
@@ -15,40 +17,81 @@
         </ol>
     </nav>
 
+<?php
+// ====== CARDS DATA ======
+
+// total pages = tourist spots
+$total_pages = $conn->query("SELECT COUNT(*) AS c FROM tourist_spots")->fetch_assoc()['c'];
+
+// categories (districts) – if you don’t have a `districts` table, replace with spots categories
+$categories = $conn->query("SELECT COUNT(DISTINCT district_id) AS c FROM tourist_spots")->fetch_assoc()['c'];
+
+// pending updates = hotels pending approval
+$pending_hotels = $conn->query("SELECT COUNT(*) AS c FROM hotels WHERE status='Pending'")->fetch_assoc()['c'];
+
+// total users
+$total_users = $conn->query("SELECT COUNT(*) AS c FROM users")->fetch_assoc()['c'];
+
+// ====== CHART DATA ======
+
+// Place bookings by month
+$place_sql = "SELECT MONTH(visit_date) as m, COUNT(*) as c 
+              FROM bookings 
+              GROUP BY MONTH(visit_date)";
+$place_result = $conn->query($place_sql);
+$place_data = array_fill(1, 12, 0);
+while($row = $place_result->fetch_assoc()){
+    $place_data[(int)$row['m']] = (int)$row['c'];
+}
+
+// Hotel bookings by month
+$hotel_sql = "SELECT MONTH(booking_date) as m, COUNT(*) as c 
+              FROM hotel_bookings 
+              GROUP BY MONTH(booking_date)";
+$hotel_result = $conn->query($hotel_sql);
+$hotel_data = array_fill(1, 12, 0);
+while($row = $hotel_result->fetch_assoc()){
+    $hotel_data[(int)$row['m']] = (int)$row['c'];
+}
+
+// Guide bookings by month
+$guide_sql = "SELECT MONTH(booking_date) as m, COUNT(*) as c 
+              FROM guide_bookings 
+              GROUP BY MONTH(booking_date)";
+$guide_result = $conn->query($guide_sql);
+$guide_data = array_fill(1, 12, 0);
+while($row = $guide_result->fetch_assoc()){
+    $guide_data[(int)$row['m']] = (int)$row['c'];
+}
+?>
+
     <!-- Dashboard Cards -->
     <div class="row g-3 px-3">
-        <!-- Total Pages -->
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card shadow-sm p-4 text-center">
                 <h6>Total Pages</h6>
-                <p class="display-6 fw-bold">12</p>
+                <p class="display-6 fw-bold"><?= $total_pages ?></p>
                 <i class="fa fa-file-text-o fa-2x text-success"></i>
             </div>
         </div>
-
-        <!-- Categories -->
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card shadow-sm p-4 text-center">
                 <h6>Categories</h6>
-                <p class="display-6 fw-bold">5</p>
+                <p class="display-6 fw-bold"><?= $categories ?></p>
                 <i class="fa fa-list fa-2x text-primary"></i>
             </div>
         </div>
-
-        <!-- Pending Updates -->
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card shadow-sm p-4 text-center">
-                <h6>Pending Updates</h6>
-                <p class="display-6 fw-bold">0</p>
+                <h6>Pending Hotels</h6>
+                <p class="display-6 fw-bold"><?= $pending_hotels ?></p>
                 <i class="fa fa-clock-o fa-2x text-warning"></i>
             </div>
         </div>
-
-        <!-- Total Users -->
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6">
             <div class="card shadow-sm p-4 text-center">
                 <h6>Total Users</h6>
-                <p class="display-6 fw-bold">320</p>
+                <p class="display-6 fw-bold"><?= $total_users ?></p>
                 <i class="fa fa-users fa-2x text-danger"></i>
             </div>
         </div>
@@ -58,13 +101,13 @@
     <div class="row g-3 mt-4 px-3">
         <div class="col-lg-8 col-md-12">
             <div class="card shadow-sm p-3 chart-card">
-                <h6>Page Visits (Graph)</h6>
+                <h6>Place Bookings (Monthly)</h6>
                 <canvas id="visitsChart"></canvas>
             </div>
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="card shadow-sm p-3 chart-card">
-                <h6>New Users (Graph)</h6>
+                <h6>Hotel & Guide Bookings (Monthly)</h6>
                 <canvas id="usersChart"></canvas>
             </div>
         </div>
@@ -81,47 +124,49 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// Charts
-const ctx1 = document.getElementById('visitsChart').getContext('2d');
-new Chart(ctx1, {
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// Line chart: Place bookings
+new Chart(document.getElementById('visitsChart'), {
     type: 'line',
     data: {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        labels: months,
         datasets: [{
-            label: 'Visits',
-            data: [120, 190, 300, 250, 400, 320],
-            borderColor: 'rgba(25, 135, 84, 1)',
-            backgroundColor: 'rgba(25, 135, 84, 0.2)',
+            label: 'Place Bookings',
+            data: <?= json_encode(array_values($place_data)) ?>,
+            borderColor: 'rgba(25,135,84,1)',
+            backgroundColor: 'rgba(25,135,84,0.2)',
             tension: 0.4
         }]
     },
     options: { responsive: true, maintainAspectRatio: false }
 });
 
-const ctx2 = document.getElementById('usersChart').getContext('2d');
-new Chart(ctx2, {
+// Bar chart: Hotel & Guide bookings
+new Chart(document.getElementById('usersChart'), {
     type: 'bar',
     data: {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
-        datasets: [{
-            label: 'New Users',
-            data: [20, 35, 40, 30, 50, 45],
-            backgroundColor: 'rgba(13, 110, 253, 0.7)'
-        }]
+        labels: months,
+        datasets: [
+            {
+                label: 'Hotel Bookings',
+                data: <?= json_encode(array_values($hotel_data)) ?>,
+                backgroundColor: 'rgba(13,110,253,0.7)'
+            },
+            {
+                label: 'Guide Bookings',
+                data: <?= json_encode(array_values($guide_data)) ?>,
+                backgroundColor: 'rgba(255,193,7,0.7)'
+            }
+        ]
     },
     options: { responsive: true, maintainAspectRatio: false }
 });
 </script>
 
 <style>
-/* Chart card fix */
-.chart-card {
-    height: 300px;
-}
-.chart-card canvas {
-    width: 100% !important;
-    height: 100% !important;
-}
+.chart-card { height: 300px; }
+.chart-card canvas { width: 100% !important; height: 100% !important; }
 </style>
 
 </body>

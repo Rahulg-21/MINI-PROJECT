@@ -40,11 +40,31 @@ if(isset($_POST['update_profile'])){
 <body>
 <?php include 'components/navbar.php'; ?>
 
+
+<style>   
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1; /* pushes footer down */
+  }
+  
+  </style>
+
+
 <div class="content">
     <div class="pt-4"></div>
 
     <!-- Profile Section -->
-    <div class="container my-4">
+    <main class="container my-4">
         <div class="card shadow-sm p-4">
             <h4 class="mb-3">👤 My Profile</h4>
             <?php if(isset($_SESSION['success'])): ?>
@@ -62,7 +82,7 @@ if(isset($_POST['update_profile'])){
             <!-- Update Button -->
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal">Update Profile</button>
         </div>
-    </div>
+            </main>
 
     <!-- Update Profile Modal -->
     <div class="modal fade" id="updateModal" tabindex="-1">

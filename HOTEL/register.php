@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold text-success" href="index.php">
-      <i class="bi bi-building"></i> Kerala Tourism Hotels
+      <i class="bi bi-building"></i> Kerala Tourism - Hotels
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         
-        <li class="nav-item"><a class="nav-link text-success fw-semibold" href="login.php">Login</a></li>
+       <!-- <li class="nav-item"><a class="nav-link text-success fw-semibold" href="login.php">Login</a></li>-->
       </ul>
     </div>
   </div>
@@ -153,6 +153,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">Register Hotel</button>
             </div>
           </form>
+          <div class="text-center mt-3">
+            <p class="mb-0">Alraedy have an account? 
+              <a href="login.php" class="fw-bold text-success">Login</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

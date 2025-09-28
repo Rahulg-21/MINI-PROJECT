@@ -1,52 +1,6 @@
 <?php
 include '../CONFIG/config.php'; // your DB connection file
 
-class User {
-    private $conn;
-
-    public function __construct($db) {
-        $this->conn = $db;
-    }
-
-    // Register new user
-    public function register($first_name, $last_name, $email, $mobile, $username, $password) {
-        // Check if username or email exists
-        $check = $this->conn->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
-        $check->bind_param("ss", $email, $username);
-        $check->execute();
-        $result = $check->get_result();
-
-        if ($result->num_rows > 0) {
-            return "Username or Email already exists!";
-        }
-
-        // Hash password
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        // Insert user
-        $stmt = $this->conn->prepare("INSERT INTO users (first_name, last_name, email, mobile, username, password) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $first_name, $last_name, $email, $mobile, $username, $hashed_password);
-
-        if ($stmt->execute()) {
-            return "success";
-        } else {
-            return "Error: " . $stmt->error;
-        }
-    }
-}
-
-$message = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = new User($conn);
-    $result = $user->register($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['mobile'], $_POST['username'], $_POST['password']);
-
-    if ($result === "success") {
-        header("Location: index.php?registered=1"); 
-        exit();
-    } else {
-        $message = $result;
-    }
-}
 ?>
 
 <?php include 'components/head.php'; ?>
@@ -69,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="alert alert-danger"><?= $message ?></div>
           <?php endif; ?>
 
-          <form method="post" class="row g-3">
+          <form method="post" action= "regfn.php" class="row g-3">
             <div class="col-md-6">
               <label class="form-label fw-semibold"><i class="bi bi-person"></i> First Name</label>
               <input type="text" name="first_name" class="form-control rounded-pill" required>

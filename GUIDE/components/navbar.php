@@ -5,9 +5,6 @@
         <h4>Guide Dashboard</h4>
     </div>
     <ul>
-        <li title="HOME">
-            <a href="../HOME/index.php"><span class="label">HOME</span></a>
-        </li>
         <li title="Profile">
             <a href="index.php"><span class="label">Profile</span></a>
         </li>
