@@ -1,3 +1,4 @@
+
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
       <!-- Sidebar Title -->
@@ -75,7 +76,7 @@
 
         
 
-        <li title="Logout"><a href=""><i class="fa fa-sign-out"></i><span class="label">Logout</span></a></li>
+        <li title="Logout"><a href="logout.php"><i class="fa fa-sign-out"></i><span class="label">Logout</span></a></li>
     </ul>
 </div>
 

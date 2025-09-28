@@ -1,3 +1,12 @@
+<?php
+// ✅ Only allow logged-in guide
+session_start();
+if(!isset($_SESSION['admin_id'])){
+    echo "<script>alert('Login!'); window.location='login.php';</script>";
+    exit;
+} ?>
+
+
 <?php 
 include 'components/head.php'; 
 include '../CONFIG/config.php'; 
