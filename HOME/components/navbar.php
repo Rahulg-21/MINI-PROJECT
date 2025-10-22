@@ -46,6 +46,9 @@
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="about.php">About Us</a>
         </li>
+         <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="chatbot.php">ChatBot</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link text-white fw-semibold" href="contact.php">Contact</a>
         </li>

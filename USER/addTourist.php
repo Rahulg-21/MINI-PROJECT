@@ -2,32 +2,31 @@
 session_start();
 include '../CONFIG/config.php';
 
-// ✅ Check if user logged in
+// ✅ Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit;
 }
 
-// Enable error reporting (for debugging)
+// Enable debug logs (optional)
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Fetch districts for dropdown
+// Fetch districts
 $districts = $conn->query("SELECT id, name FROM districts ORDER BY name ASC");
 
+// ✅ Handle form submit
 if (isset($_POST['submit'])) {
     $district_id = mysqli_real_escape_string($conn, $_POST['district_id']);
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $user_id = $_SESSION['user_id']; // ✅ Track who submitted
+    $user_id = $_SESSION['user_id'];
 
     // File upload
     $image = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
     $upload_folder = "../ADMIN/uploads/tourist_spots/" . $image;
 
-    // Create folder if not exists
     if (!file_exists('../ADMIN/uploads/tourist_spots/')) {
         mkdir('../ADMIN/uploads/tourist_spots/', 0777, true);
     }
@@ -35,13 +34,10 @@ if (isset($_POST['submit'])) {
     if (!empty($district_id) && !empty($name) && !empty($image) && !empty($description)) {
         if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
             if (move_uploaded_file($image_tmp, $upload_folder)) {
-                // ✅ Insert with status = Pending
                 $query = "INSERT INTO tourist_spots (district_id, name, image, description, status) 
                           VALUES ('$district_id', '$name', '$image', '$description', 'Pending')";
-                $query_run = mysqli_query($conn, $query);
-
-                if ($query_run) {
-                    echo '<script>alert("Tourist spot submitted successfully! Waiting for admin approval.");</script>';
+                if (mysqli_query($conn, $query)) {
+                    echo '<script>alert("✅ Tourist spot submitted successfully! Waiting for admin approval.");</script>';
                 } else {
                     echo '<script>alert("Database error: ' . mysqli_error($conn) . '");</script>';
                 }
@@ -75,19 +71,21 @@ if (isset($_POST['submit'])) {
     <!-- Form Card -->
     <div class="container-fluid px-3">
         <div class="card shadow-sm p-4 mb-4">
-            <h5 class="mb-4">Add Tourist Spot</h5>
-            <form method="post" enctype="multipart/form-data">
-                
+            <h5 class="mb-4">🏞️ Add Tourist Spot</h5>
+
+            <form method="post" enctype="multipart/form-data" id="touristForm" novalidate>
+
                 <!-- District -->
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Select District</label>
                     <div class="col-sm-8">
-                        <select name="district_id" class="form-select" required>
+                        <select name="district_id" id="district_id" class="form-select" required>
                             <option value="">*** Select District ***</option>
                             <?php while ($row = $districts->fetch_assoc()) { ?>
                                 <option value="<?= $row['id']; ?>"><?= htmlspecialchars($row['name']); ?></option>
                             <?php } ?>
                         </select>
+                        <div class="invalid-feedback">Please select a district.</div>
                     </div>
                 </div>
 
@@ -95,7 +93,8 @@ if (isset($_POST['submit'])) {
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Tourist Spot Name</label>
                     <div class="col-sm-8">
-                        <input type="text" name="name" class="form-control" placeholder="Enter tourist spot name" required>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter tourist spot name" required>
+                        <div class="invalid-feedback">Name must be 3–50 characters (letters, spaces only).</div>
                     </div>
                 </div>
 
@@ -103,7 +102,8 @@ if (isset($_POST['submit'])) {
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Image</label>
                     <div class="col-sm-8">
-                        <input type="file" name="image" accept="image/*" class="form-control" required>
+                        <input type="file" name="image" id="image" accept="image/*" class="form-control" required>
+                        <div id="imageFeedback" class="form-text text-muted">Only JPG, PNG, or JPEG under 2MB allowed.</div>
                     </div>
                 </div>
 
@@ -111,7 +111,8 @@ if (isset($_POST['submit'])) {
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-8">
-                        <textarea name="description" rows="5" class="form-control" placeholder="Enter description" required></textarea>
+                        <textarea name="description" id="description" rows="5" class="form-control" placeholder="Enter description (min 20 characters)" required></textarea>
+                        <div class="invalid-feedback">Description must be at least 20 characters.</div>
                     </div>
                 </div>
 
@@ -130,6 +131,68 @@ if (isset($_POST['submit'])) {
         <p class="mb-0">Kerala Tourism. All Rights Reserved | <a href="#">Kerala Tourism</a></p>
     </div>
 </div>
+
+<!-- ✅ Real-time validation -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("touristForm");
+    const district = document.getElementById("district_id");
+    const name = document.getElementById("name");
+    const image = document.getElementById("image");
+    const description = document.getElementById("description");
+    const imageFeedback = document.getElementById("imageFeedback");
+
+    // Validators
+    const isNameValid = v => /^[A-Za-z\s]{3,50}$/.test(v);
+    const isDescriptionValid = v => v.trim().length >= 20;
+    const isImageValid = file => {
+        if (!file) return false;
+        const allowed = ['image/jpeg', 'image/png', 'image/jpg'];
+        const sizeOK = file.size <= 2 * 1024 * 1024; // 2MB
+        return allowed.includes(file.type) && sizeOK;
+    };
+
+    // Utility
+    const setValidity = (el, valid) => {
+        el.classList.toggle("is-valid", valid);
+        el.classList.toggle("is-invalid", !valid);
+    };
+
+    // Real-time checks
+    name.addEventListener("input", () => setValidity(name, isNameValid(name.value)));
+    description.addEventListener("input", () => setValidity(description, isDescriptionValid(description.value)));
+    district.addEventListener("change", () => setValidity(district, district.value !== ""));
+    image.addEventListener("change", () => {
+        const file = image.files[0];
+        if (!file) return setValidity(image, false);
+        if (!isImageValid(file)) {
+            setValidity(image, false);
+            imageFeedback.textContent = "❌ Invalid file (must be JPG/PNG under 2MB)";
+            imageFeedback.className = "form-text text-danger";
+        } else {
+            setValidity(image, true);
+            imageFeedback.textContent = "✅ Image looks good!";
+            imageFeedback.className = "form-text text-success";
+        }
+    });
+
+    // Final submit check
+    form.addEventListener("submit", e => {
+        const valid =
+            district.value !== "" &&
+            isNameValid(name.value) &&
+            isDescriptionValid(description.value) &&
+            image.files.length > 0 &&
+            isImageValid(image.files[0]);
+
+        if (!valid) {
+            e.preventDefault();
+            alert("⚠️ Please correct the highlighted fields before submitting.");
+            form.classList.add("was-validated");
+        }
+    });
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
